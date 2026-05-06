@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sola — Sun in a box</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sun: #F5A623;
+  --sun-light: #FFF3DC;
+  --teal: #1A6B5A;
+  --teal-mid: #2E8B73;
+  --teal-light: #E0F2EE;
+  --slate: #1C2B2A;
+  --slate-mid: #3D4F4E;
+  --muted: #7A8E8C;
+  --off-white: #F8F6F1;
+  --white: #FFFFFF;
+  --border: rgba(28,43,42,0.12);
+  --r: 12px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--slate); line-height: 1.6; }
+.serif { font-family: 'DM Serif Display', serif; }
+
+nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 48px; background: rgba(248,246,241,0.92);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+}
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-mark {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--sun); display: flex; align-items: center; justify-content: center;
+}
+.logo-mark svg { width: 18px; height: 18px; }
+.logo-text { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--slate); }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a { font-size: 14px; color: var(--slate-mid); text-decoration: none; font-weight: 400; }
+.nav-links a:hover { color: var(--slate); }
+.nav-cta {
+  background: var(--slate); color: var(--white); padding: 10px 22px;
+  border-radius: 100px; font-size: 14px; font-weight: 500; text-decoration: none;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--teal); }
+
+.hero {
+  min-height: 92vh; display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; align-items: stretch; overflow: hidden;
+}
+.hero-left {
+  padding: 80px 64px 80px 48px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--teal-light); color: var(--teal); border-radius: 100px;
+  padding: 6px 14px; font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
+  text-transform: uppercase; margin-bottom: 28px; width: fit-content;
+}
+.hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--teal-mid); }
+.hero-h1 { font-family: 'DM Serif Display', serif; font-size: 58px; line-height: 1.05; color: var(--slate); margin-bottom: 24px; }
+.hero-h1 em { font-style: italic; color: var(--teal); }
+.hero-sub { font-size: 18px; color: var(--muted); line-height: 1.7; max-width: 440px; margin-bottom: 40px; }
+.hero-actions { display: flex; align-items: center; gap: 16px; margin-bottom: 48px; }
+.btn-primary {
+  background: var(--teal); color: var(--white); padding: 16px 32px;
+  border-radius: 100px; font-size: 16px; font-weight: 500; text-decoration: none;
+  transition: background 0.2s; display: inline-block;
+}
+.btn-primary:hover { background: var(--slate); }
+.btn-ghost {
+  color: var(--slate-mid); font-size: 15px; text-decoration: none; display: flex;
+  align-items: center; gap: 6px; font-weight: 400;
+}
+.btn-ghost:hover { color: var(--slate); }
+.hero-trust { display: flex; gap: 24px; }
+.trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.trust-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sun); flex-shrink: 0; }
+
+.hero-right {
+  background: var(--slate); position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 48px;
+}
+.hero-panel-visual {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, #1C2B2A 0%, #2E4A45 50%, #1A3530 100%);
+}
+.hero-panel-grid {
+  position: absolute; top: 40px; left: 50%; transform: translateX(-50%);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 280px;
+}
+.solar-cell {
+  background: rgba(42,90,84,0.7); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px; aspect-ratio: 3/4;
+  display: flex; align-items: center; justify-content: center;
+}
+.solar-cell-inner {
+  width: 80%; height: 80%;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 10px, rgba(255,255,255,0.04) 10px, rgba(255,255,255,0.04) 11px
+  ),
+  repeating-linear-gradient(
+    90deg, transparent, transparent 10px, rgba(255,255,255,0.04) 10px, rgba(255,255,255,0.04) 11px
+  );
+  border-radius: 4px;
+}
+.hero-stat-cards {
+  position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.hero-stat {
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--r); padding: 16px 20px; backdrop-filter: blur(4px);
+}
+.stat-n { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--white); }
+.stat-l { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+.hero-sun-badge {
+  position: absolute; top: 40px; right: 40px; z-index: 2;
+  width: 80px; height: 80px; border-radius: 50%;
+  background: var(--sun); display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+}
+.hero-sun-badge span:first-child { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--slate); line-height: 1; }
+.hero-sun-badge span:last-child { font-size: 10px; color: var(--slate); opacity: 0.7; }
+
+.bnpl-strip {
+  background: var(--sun); padding: 20px 48px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+}
+.bnpl-strip-text { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--slate); }
+.bnpl-strip-text span { font-style: italic; }
+.bnpl-strip-right { display: flex; align-items: center; gap: 24px; }
+.bnpl-pill {
+  background: rgba(28,43,42,0.12); border-radius: 100px;
+  padding: 8px 20px; font-size: 14px; font-weight: 500; color: var(--slate);
+}
+.bnpl-btn {
+  background: var(--slate); color: var(--white); padding: 10px 24px;
+  border-radius: 100px; font-size: 14px; font-weight: 500; text-decoration: none;
+}
+
+.how { padding: 96px 48px; max-width: 1100px; margin: 0 auto; }
+.section-label { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+.section-title { font-family: 'DM Serif Display', serif; font-size: 42px; color: var(--slate); margin-bottom: 56px; }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.step-num {
+  width: 40px; height: 40px; border-radius: 50%; background: var(--teal-light);
+  color: var(--teal); font-weight: 600; font-size: 14px;
+  display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+}
+.step h3 { font-size: 16px; font-weight: 500; margin-bottom: 8px; }
+.step p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+.products { padding: 96px 48px; background: var(--slate); }
+.products-inner { max-width: 1100px; margin: 0 auto; }
+.products .section-label { color: var(--sun); }
+.products .section-title { color: var(--white); }
+.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.product-card {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px; padding: 28px; position: relative; overflow: hidden;
+}
+.product-card.featured { border-color: var(--sun); background: rgba(245,166,35,0.08); }
+.featured-badge {
+  position: absolute; top: 0; right: 0;
+  background: var(--sun); color: var(--slate);
+  padding: 6px 16px; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
+  text-transform: uppercase; border-radius: 0 16px 0 12px;
+}
+.product-tier { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.product-name { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--white); margin-bottom: 4px; }
+.product-watt { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+.product-price-sub { font-size: 28px; font-weight: 500; color: var(--white); }
+.product-price-sub small { font-size: 14px; color: rgba(255,255,255,0.5); font-weight: 400; }
+.product-price-up { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 4px; margin-bottom: 20px; }
+.product-features { list-style: none; margin-bottom: 24px; }
+.product-features li { font-size: 13px; color: rgba(255,255,255,0.65); padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 8px; }
+.product-features li::before { content: '→'; color: var(--teal-mid); font-size: 12px; flex-shrink: 0; }
+.product-features li:last-child { border-bottom: none; }
+.product-btn {
+  width: 100%; padding: 14px; border-radius: 100px; font-size: 14px; font-weight: 500;
+  text-align: center; text-decoration: none; display: block;
+  background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.15);
+  transition: background 0.2s;
+}
+.product-card.featured .product-btn { background: var(--sun); color: var(--slate); border-color: var(--sun); }
+.product-btn:hover { background: rgba(255,255,255,0.2); }
+.product-card.featured .product-btn:hover { background: #e89a1a; }
+
+.calc-section { padding: 96px 48px; }
+.calc-inner { max-width: 900px; margin: 0 auto; }
+.calc-box {
+  background: var(--white); border: 1px solid var(--border); border-radius: 20px; overflow: hidden;
+}
+.calc-header { padding: 40px 48px; border-bottom: 1px solid var(--border); }
+.calc-header h2 { font-family: 'DM Serif Display', serif; font-size: 34px; margin-bottom: 8px; }
+.calc-header p { color: var(--muted); font-size: 15px; }
+.calc-body { padding: 40px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.calc-field { margin-bottom: 24px; }
+.calc-field label { font-size: 13px; font-weight: 500; color: var(--slate-mid); display: block; margin-bottom: 8px; }
+.calc-field select, .calc-field input[type="range"] {
+  width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px;
+  font-size: 14px; background: var(--off-white); color: var(--slate); appearance: none;
+}
+.range-val { font-size: 18px; font-weight: 500; color: var(--teal); margin-top: 4px; }
+.calc-result {
+  background: var(--teal); border-radius: 16px; padding: 32px; color: var(--white);
+}
+.calc-result h3 { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 24px; opacity: 0.85; }
+.result-item { margin-bottom: 20px; }
+.result-label { font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+.result-value { font-size: 36px; font-weight: 300; font-family: 'DM Serif Display', serif; }
+.result-value.highlight { color: var(--sun); }
+.result-note { font-size: 12px; opacity: 0.55; margin-top: 16px; line-height: 1.6; }
+
+.proof { padding: 80px 48px; background: var(--teal-light); }
+.proof-inner { max-width: 1100px; margin: 0 auto; }
+.proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+.proof-card {
+  background: var(--white); border-radius: 16px; padding: 28px;
+  border: 1px solid rgba(26,107,90,0.1);
+}
+.stars { color: var(--sun); font-size: 14px; margin-bottom: 12px; }
+.proof-text { font-size: 14px; color: var(--slate-mid); line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+.proof-author { font-size: 13px; font-weight: 500; color: var(--slate); }
+.proof-sub { font-size: 12px; color: var(--muted); }
+.proof-stats { display: flex; gap: 48px; margin-top: 48px; justify-content: center; }
+.proof-stat { text-align: center; }
+.proof-stat-n { font-family: 'DM Serif Display', serif; font-size: 40px; color: var(--teal); }
+.proof-stat-l { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+.faq { padding: 96px 48px; max-width: 780px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 24px 0; }
+.faq-q { font-size: 16px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+.faq-q span { color: var(--teal); font-size: 20px; }
+.faq-a { font-size: 14px; color: var(--muted); line-height: 1.7; margin-top: 14px; max-width: 600px; }
+
+footer {
+  background: var(--slate); padding: 64px 48px 40px;
+}
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand p { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 16px; max-width: 280px; line-height: 1.7; }
+.footer-col h4 { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+.footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; margin-bottom: 10px; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { min-height: 320px; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .product-grid { grid-template-columns: 1fr; }
+  .calc-body { grid-template-columns: 1fr; }
+  .proof-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .hero-left { padding: 48px 24px; }
+  .hero-h1 { font-size: 40px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="5" fill="#1C2B2A"/>
+        <line x1="12" y1="2" x2="12" y2="5" stroke="#1C2B2A" stroke-width="2" stroke-linecap="round"/>
+        <line x1="12" y1="19" x2="12" y2="22" stroke="#1C2B2A" stroke-width="2" stroke-linecap="round"/>
+        <line x1="2" y1="12" x2="5" y2="12" stroke="#1C2B2A" stroke-width="2" stroke-linecap="round"/>
+        <line x1="19" y1="12" x2="22" y2="12" stroke="#1C2B2A" stroke-width="2" stroke-linecap="round"/>
+        <line x1="4.93" y1="4.93" x2="7.05" y2="7.05" stroke="#1C2B2A" stroke-width="2" stroke-linecap="round"/>
+        <line x1="16.95" y1="16.95" x2="19.07" y2="19.07" stroke="#1C2B2A" stroke-width="2" stroke-linecap="round"/>
+        <line x1="4.93" y1="19.07" x2="7.05" y2="16.95" stroke="#1C2B2A" stroke-width="2" stroke-linecap="round"/>
+        <line x1="16.95" y1="7.05" x2="19.07" y2="4.93" stroke="#1C2B2A" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="logo-text">Sola</span>
+  </a>
+  <div class="nav-links">
+    <a href="#">How it works</a>
+    <a href="#">Products</a>
+    <a href="#">Savings calculator</a>
+    <a href="#">For renters</a>
+    <a href="#">Blog</a>
+  </div>
+  <a href="#" class="nav-cta">Get yours — from £29/mo</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Now legal in the UK · Summer 2026</div>
+    <h1 class="hero-h1">Your balcony<br>is a <em>power station</em></h1>
+    <p class="hero-sub">Plug-in solar panels that clip to any balcony railing or garden wall. No electrician. No planning permission. Start generating your own electricity in under an hour.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">From £29 / month →</a>
+      <a href="#" class="btn-ghost">See how it works ↓</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><div class="trust-dot"></div>BSI certified kits</div>
+      <div class="trust-item"><div class="trust-dot"></div>0% VAT until 2027</div>
+      <div class="trust-item"><div class="trust-dot"></div>Free UK delivery</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-panel-visual"></div>
+    <div class="hero-sun-badge">
+      <span>800W</span>
+      <span>max</span>
+    </div>
+    <div class="hero-panel-grid">
+      <div class="solar-cell"><div class="solar-cell-inner"></div></div>
+      <div class="solar-cell"><div class="solar-cell-inner"></div></div>
+    </div>
+    <div class="hero-stat-cards">
+      <div class="hero-stat"><div class="stat-n">£150</div><div class="stat-l">saved per year, avg.</div></div>
+      <div class="hero-stat"><div class="stat-n">3–4 yr</div><div class="stat-l">typical payback</div></div>
+      <div class="hero-stat"><div class="stat-n">&lt;1hr</div><div class="stat-l">to install, no tools</div></div>
+      <div class="hero-stat"><div class="stat-n">800W</div><div class="stat-l">UK legal maximum</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="bnpl-strip">
+  <div class="bnpl-strip-text">Pay <span>£29/month</span> and save from day one</div>
+  <div class="bnpl-strip-right">
+    <div class="bnpl-pill">No upfront cost option</div>
+    <div class="bnpl-pill">Own it after 18 months</div>
+    <div class="bnpl-pill">Cancel anytime</div>
+    <a href="#" class="bnpl-btn">See plans</a>
+  </div>
+</div>
+
+<section class="how">
+  <div class="section-label">How it works</div>
+  <h2 class="section-title serif">Set up in four steps.</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><h3>Choose your kit</h3><p>Pick the right wattage for your space. Our quiz helps you find the best option for your balcony, garden, or south-facing wall.</p></div>
+    <div class="step"><div class="step-num">2</div><h3>Delivered to your door</h3><p>Everything in one box — panels, microinverter, railing clamp brackets, and cable. No electrician required. No tools needed.</p></div>
+    <div class="step"><div class="step-num">3</div><h3>Clip, tilt, plug in</h3><p>Clamp the bracket to your railing. Tilt the panel south. Plug the cable into any standard UK socket. Done. Takes under an hour.</p></div>
+    <div class="step"><div class="step-num">4</div><h3>Watch your bills fall</h3><p>The Sola app shows you exactly how much you're generating and saving, in real time. Your fridge runs on sunshine now.</p></div>
+  </div>
+</section>
+
+<section class="products">
+  <div class="products-inner">
+    <div class="section-label">Choose your kit</div>
+    <h2 class="section-title serif" style="color:white">Three sizes. One plug socket.</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-tier">Starter</div>
+        <div class="product-name">Sola 200</div>
+        <div class="product-watt">200W · 1 panel · ideal for small balconies</div>
+        <div class="product-price-sub">£18<small>/month</small></div>
+        <div class="product-price-up">or £279 upfront (save 14%)</div>
+        <ul class="product-features">
+          <li>1 × compact 200W bifacial panel (80cm × 55cm)</li>
+          <li>Hoymiles microinverter · G98 certified</li>
+          <li>Drill-free railing clamp included</li>
+          <li>Saves ~£70–90/year</li>
+          <li>3–4 year payback</li>
+          <li>App monitoring included</li>
+        </ul>
+        <a href="#" class="product-btn">Get the Sola 200</a>
+      </div>
+      <div class="product-card featured">
+        <div class="featured-badge">Most popular</div>
+        <div class="product-tier">Hero</div>
+        <div class="product-name">Sola 400</div>
+        <div class="product-watt">400W · 2 compact panels · fits most UK balconies</div>
+        <div class="product-price-sub">£29<small>/month</small></div>
+        <div class="product-price-up">or £399 upfront (save 15%)</div>
+        <ul class="product-features">
+          <li>2 × compact 200W bifacial panels (80cm × 55cm)</li>
+          <li>Hoymiles 400W microinverter · G98 certified</li>
+          <li>2 × adjustable railing clamp brackets</li>
+          <li>Saves ~£120–160/year</li>
+          <li>3–4 year payback (upfront) · cash-positive vs bills from mo.3</li>
+          <li>App monitoring · DNO notification support</li>
+        </ul>
+        <a href="#" class="product-btn">Get the Sola 400</a>
+      </div>
+      <div class="product-card">
+        <div class="product-tier">Pro</div>
+        <div class="product-name">Sola 800</div>
+        <div class="product-watt">800W · 2 large panels · gardens, flat roofs</div>
+        <div class="product-price-sub">£45<small>/month</small></div>
+        <div class="product-price-up">or £649 upfront (save 16%)</div>
+        <ul class="product-features">
+          <li>2 × 400W rigid monocrystalline panels (172cm × 113cm)</li>
+          <li>Hoymiles HMS-800 microinverter · G98 certified</li>
+          <li>Ground/wall mount frame included</li>
+          <li>Saves ~£170–220/year</li>
+          <li>3–4 year payback · best absolute return</li>
+          <li>App monitoring · optional battery add-on</li>
+        </ul>
+        <a href="#" class="product-btn">Get the Sola 800</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="calc-section">
+  <div class="calc-inner">
+    <div class="section-label">Savings calculator</div>
+    <div class="calc-box">
+      <div class="calc-header">
+        <h2 class="serif">How much will you save?</h2>
+        <p>Answer two questions and get your personalised savings estimate.</p>
+      </div>
+      <div class="calc-body">
+        <div class="calc-inputs">
+          <div class="calc-field">
+            <label>Monthly electricity bill (£)</label>
+            <input type="range" min="30" max="200" value="90" id="bill-slider" oninput="updateCalc()">
+            <div class="range-val" id="bill-val">£90 / month</div>
+          </div>
+          <div class="calc-field">
+            <label>Balcony / outdoor space direction</label>
+            <select id="direction" onchange="updateCalc()">
+              <option value="1.0">South-facing (best)</option>
+              <option value="0.85">South-east or South-west</option>
+              <option value="0.7">East or West-facing</option>
+              <option value="0.5">North-facing (limited)</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label>Kit size</label>
+            <select id="kit" onchange="updateCalc()">
+              <option value="80">Sola 200 — compact starter</option>
+              <option value="145" selected>Sola 400 — most popular</option>
+              <option value="195">Sola 800 — maximum output</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-result">
+          <h3>Your estimated savings</h3>
+          <div class="result-item"><div class="result-label">Annual saving</div><div class="result-value highlight" id="annual-saving">£123</div></div>
+          <div class="result-item"><div class="result-label">Monthly equivalent</div><div class="result-value" id="monthly-saving">£10.25</div></div>
+          <div class="result-item"><div class="result-label">Upfront payback period</div><div class="result-value" id="payback">3.2 yrs</div></div>
+          <div class="result-note">Based on 24p/kWh UK average. South-facing 400W generates ~650 kWh/year in central England. Actual savings vary by location and usage pattern.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proof">
+  <div class="proof-inner">
+    <div class="section-label">Real customers</div>
+    <h2 class="section-title serif">People are already saving.</h2>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="stars">★★★★★</div>
+        <p class="proof-text">"Set it up in 45 minutes on a Saturday morning. My energy app shows it's been generating since day one. My landlord couldn't have been less bothered — it just clamps to the railing."</p>
+        <div class="proof-author">Priya M.</div>
+        <div class="proof-sub">Renter, East London · Sola 400</div>
+      </div>
+      <div class="proof-card">
+        <div class="stars">★★★★★</div>
+        <p class="proof-text">"I'm 58 and not at all tech-savvy. The instructions were crystal clear. It was paying for itself within three months. I wish I'd done this two years ago when my bills started going mad."</p>
+        <div class="proof-author">David K.</div>
+        <div class="proof-sub">Homeowner, Manchester · Sola 800</div>
+      </div>
+      <div class="proof-card">
+        <div class="stars">★★★★★</div>
+        <p class="proof-text">"The £29/month subscription was the reason I finally pulled the trigger. I save more on my bill than I pay Sola each month — it basically pays for itself from the start."</p>
+        <div class="proof-author">Sophie T.</div>
+        <div class="proof-sub">Renter, Bristol · Sola 400</div>
+      </div>
+    </div>
+    <div class="proof-stats">
+      <div class="proof-stat"><div class="proof-stat-n">4,200+</div><div class="proof-stat-l">UK customers</div></div>
+      <div class="proof-stat"><div class="proof-stat-n">£127</div><div class="proof-stat-l">average annual saving</div></div>
+      <div class="proof-stat"><div class="proof-stat-n">4.8/5</div><div class="proof-stat-l">average review score</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="section-label">Common questions</div>
+  <h2 class="section-title serif" style="font-size:34px">Everything you need to know.</h2>
+  <div class="faq-item"><div class="faq-q">Can I install this in a rented flat? <span>+</span></div><div class="faq-a">Yes. Under the Renters' Rights Act 2025, landlords in England cannot unreasonably refuse improvements that don't structurally modify the property. Our drill-free railing clamp leaves zero marks. Always notify your landlord in writing first — we provide a template letter.</div></div>
+  <div class="faq-item"><div class="faq-q">Do I need an electrician? <span>+</span></div><div class="faq-a">No. Under BS 7671 Amendment 4 (April 2026), certified plug-in solar kits under 800W can be connected to a standard 13A UK socket by any household member. No professional required.</div></div>
+  <div class="faq-item"><div class="faq-q">What happens when I move? <span>+</span></div><div class="faq-a">You take it with you. The entire kit is portable — unclamp the bracket, unplug the cable, pack the panels in the original box. Set up again at your new place in under an hour. This is the whole point.</div></div>
+  <div class="faq-item"><div class="faq-q">How does the subscription work? <span>+</span></div><div class="faq-a">Pay £29/month (Sola 400) for 18 months, then you own it outright. We use Klarna — no credit check required for most customers. Cancel within 30 days for a full refund if you're not satisfied.</div></div>
+  <div class="faq-item"><div class="faq-q">What if my panel breaks? <span>+</span></div><div class="faq-a">All Sola kits come with a 10-year panel warranty and 12-year microinverter warranty. If anything fails within that period, we'll send a replacement component directly to you, free of charge.</div></div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div style="font-family:'DM Serif Display',serif;font-size:24px;color:white">Sola</div>
+      <p>Plug-in solar panels for people who rent, move, and want their money back from the energy companies.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="#">Sola 200</a><a href="#">Sola 400</a><a href="#">Sola 800</a><a href="#">Battery add-on</a><a href="#">Accessories</a>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <a href="#">Installation guide</a><a href="#">FAQs</a><a href="#">For renters</a><a href="#">Contact support</a><a href="#">Returns</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About</a><a href="#">Blog</a><a href="#">Press</a><a href="#">Affiliates</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Sola Ltd. Registered in England & Wales. BSI certified kits. 0% VAT on residential solar.</p>
+    <div style="display:flex;gap:24px">
+      <a href="#" style="font-size:12px;color:rgba(255,255,255,0.3);text-decoration:none">Privacy</a>
+      <a href="#" style="font-size:12px;color:rgba(255,255,255,0.3);text-decoration:none">Terms</a>
+      <a href="#" style="font-size:12px;color:rgba(255,255,255,0.3);text-decoration:none">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function updateCalc() {
+  const bill = +document.getElementById('bill-slider').value;
+  const dir = +document.getElementById('direction').value;
+  const base = +document.getElementById('kit').value;
+  document.getElementById('bill-val').textContent = '£' + bill + ' / month';
+  const annual = Math.round(base * dir);
+  const monthly = (annual / 12).toFixed(2);
+  const prices = { 80: 279, 145: 399, 195: 649 };
+  const price = prices[base] || 399;
+  const payback = (price / annual).toFixed(1);
+  document.getElementById('annual-saving').textContent = '£' + annual;
+  document.getElementById('monthly-saving').textContent = '£' + monthly;
+  document.getElementById('payback').textContent = payback + ' yrs';
+}
+updateCalc();
+</script>
+</body>
+</html>
