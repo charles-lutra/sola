@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sola — Brand & Social Media Playbook</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--sun:#F5A623;--sun-l:#FFF3DC;--teal:#1A6B5A;--teal-l:#E0F2EE;--slate:#1C2B2A;--muted:#6B7B7A;--border:#E4EDED;--bg:#F5F8F7;--white:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--slate);font-size:14px}
+header{background:var(--slate);padding:28px 48px;display:flex;align-items:center;gap:20px}
+.logo-sm{font-family:'DM Serif Display',serif;font-size:28px;color:white}
+.logo-dot{width:10px;height:10px;border-radius:50%;background:var(--sun);margin-top:4px}
+header p{font-size:13px;color:rgba(255,255,255,0.45);margin-top:4px}
+.body{max-width:1060px;margin:0 auto;padding:48px}
+.section{margin-bottom:56px}
+.sect-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.sect-title{font-family:'DM Serif Display',serif;font-size:34px;color:var(--slate);margin-bottom:24px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px}
+.card-title{font-size:14px;font-weight:500;margin-bottom:8px}
+.card-body{font-size:13px;color:var(--muted);line-height:1.7}
+.hl{background:var(--teal-l);border-left:3px solid var(--teal);padding:16px 20px;border-radius:0 10px 10px 0;margin-bottom:20px}
+.hl.sun{background:var(--sun-l);border-left-color:var(--sun)}
+.hl p{font-size:13px;color:var(--slate);line-height:1.7}
+
+.swatch-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.swatch{border-radius:10px;padding:18px 20px;min-width:130px}
+.swatch-name{font-size:12px;font-weight:500;margin-bottom:2px}
+.swatch-hex{font-size:11px;font-family:'DM Mono',monospace;opacity:0.7}
+
+.voice-table{width:100%;border-collapse:collapse;margin-bottom:0}
+.voice-table th{text-align:left;padding:10px 14px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);border-bottom:1px solid var(--border)}
+.voice-table td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.6}
+.voice-table tr:last-child td{border-bottom:none}
+.do{color:#1A6B5A;font-weight:500}
+.dont{color:#C0392B;font-weight:500}
+
+.script-card{background:var(--slate);border-radius:14px;padding:24px;color:white;margin-bottom:16px}
+.script-type{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--sun);margin-bottom:8px}
+.script-hook{font-family:'DM Serif Display',serif;font-size:20px;color:white;margin-bottom:14px;line-height:1.3}
+.script-body{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.75;white-space:pre-wrap}
+.script-cta{margin-top:14px;display:inline-block;background:var(--sun);color:var(--slate);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:500}
+.script-tag{display:inline-block;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);padding:3px 10px;border-radius:100px;font-size:11px;margin:2px}
+.tag-row{margin-top:12px}
+
+.cal-week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:8px}
+.cal-day{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:10px 8px;font-size:11px;text-align:center}
+.cal-day-name{font-weight:500;color:var(--muted);margin-bottom:6px}
+.cal-item{border-radius:4px;padding:3px 6px;margin-bottom:3px;font-size:10px;line-height:1.3}
+.cal-tiktok{background:#FF4B4B22;color:#C0392B}
+.cal-ig{background:#F5A62322;color:#7A5200}
+.cal-email{background:#1A6B5A22;color:#1A6B5A}
+.cal-blog{background:#E0E4FF;color:#3D4AB5}
+.cal-empty{color:var(--muted);font-style:italic;font-size:10px;margin-top:8px}
+
+.flow{display:flex;flex-direction:column;gap:0}
+.flow-item{display:flex;gap:0;align-items:stretch}
+.flow-line{display:flex;flex-direction:column;align-items:center;width:28px;flex-shrink:0}
+.flow-dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--teal);background:var(--white);flex-shrink:0;margin-top:4px}
+.flow-dot.fill{background:var(--teal)}
+.flow-vline{width:2px;flex:1;background:var(--border);margin:2px 0}
+.flow-content{padding:0 0 24px 16px;flex:1}
+.flow-day{font-size:11px;color:var(--teal);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.flow-subject{font-size:14px;font-weight:500;margin-bottom:4px}
+.flow-preview{font-size:12px;color:var(--muted);line-height:1.5}
+
+.comp-table{width:100%;border-collapse:collapse}
+.comp-table th{text-align:left;padding:10px 14px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);border-bottom:1px solid var(--border)}
+.comp-table td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border)}
+.comp-table tr:last-child td{border-bottom:none}
+.check{color:var(--teal);font-weight:600}
+.cross{color:#C0392B}
+.ours{background:#E0F2EE}
+
+@media(max-width:780px){.grid2,.grid3{grid-template-columns:1fr}.cal-week{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="logo-sm">Sola</div>
+      <div class="logo-dot"></div>
+    </div>
+    <p>Brand Identity & Social Media Playbook — 2026</p>
+  </div>
+</header>
+
+<div class="body">
+
+<div class="section">
+  <div class="sect-label">Brand identity</div>
+  <h2 class="sect-title">Who is Sola?</h2>
+
+  <div class="hl" style="margin-bottom:24px">
+    <p><strong style="font-weight:500">Brand positioning in one sentence:</strong> "The solar kit for people who rent, move, and want their money back from the energy companies."</p>
+  </div>
+
+  <div class="grid2" style="margin-bottom:24px">
+    <div class="card">
+      <div class="card-title">Brand personality</div>
+      <div class="card-body">
+        <strong style="font-weight:500;display:block;margin-bottom:6px">If Sola were a person, they'd be…</strong>
+        A 31-year-old renter in Bristol who cycles to work, tracks their bills on a spreadsheet, and spent an hour researching every appliance they own to make it more efficient. They're practical, not preachy. They care about the planet but they'll talk about £ savings first, because that's what actually convinces people.
+        <br><br>
+        <strong style="font-weight:500">Tone words:</strong> Direct. Warm. A little wry. Smart without showing off. Never preachy.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Two audiences, one brand voice</div>
+      <div class="card-body">
+        <strong style="font-weight:500;display:block;margin-bottom:4px">Eco-conscious renters (25–38)</strong>
+        Lead with energy sovereignty, climate context, renter rights. Conversational, slightly urgent. They want to feel like they're doing something.
+        <br><br>
+        <strong style="font-weight:500;display:block;margin-bottom:4px">Cost-focused households (38–60)</strong>
+        Lead with £ numbers, payback period, "saves more than it costs." More formal. They want proof, not ideology. Reference the Ofgem price cap, energy crisis.
+        <br><br>
+        Both audiences respond to: <em>simplicity</em>, <em>portability</em>, <em>no-jargon explanations</em>.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:24px">
+    <div class="card-title">Colour palette</div>
+    <div class="swatch-row" style="margin-top:12px">
+      <div class="swatch" style="background:#1A6B5A"><div class="swatch-name" style="color:white">Sola Teal</div><div class="swatch-hex" style="color:rgba(255,255,255,0.6)">#1A6B5A</div></div>
+      <div class="swatch" style="background:#F5A623"><div class="swatch-name" style="color:#3D2200">Sola Sun</div><div class="swatch-hex" style="color:rgba(61,34,0,0.6)">#F5A623</div></div>
+      <div class="swatch" style="background:#1C2B2A"><div class="swatch-name" style="color:white">Slate</div><div class="swatch-hex" style="color:rgba(255,255,255,0.5)">#1C2B2A</div></div>
+      <div class="swatch" style="background:#E0F2EE"><div class="swatch-name" style="color:#1A6B5A">Teal Mist</div><div class="swatch-hex" style="color:#1A6B5A">#E0F2EE</div></div>
+      <div class="swatch" style="background:#FFF3DC"><div class="swatch-name" style="color:#7A5200">Sun Light</div><div class="swatch-hex" style="color:#7A5200">#FFF3DC</div></div>
+      <div class="swatch" style="background:#F5F8F7;border:1px solid #E4EDED"><div class="swatch-name" style="color:#1C2B2A">Off-white</div><div class="swatch-hex" style="color:#6B7B7A">#F5F8F7</div></div>
+    </div>
+    <div class="card-body">Teal is the primary brand colour — used for CTAs, accents, progress indicators. Sun/amber is the accent — used for hero highlights, sale badges, the BNPL strip. Slate grounds everything. Never use more than three colours in a single layout.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Voice: do vs. don't</div>
+    <table class="voice-table" style="margin-top:12px">
+      <tr><th>Context</th><th class="do">Do say</th><th class="dont">Don't say</th></tr>
+      <tr><td>Energy savings</td><td class="do">"Cuts your bill by £120 a year"</td><td class="dont">"Reduces your carbon footprint significantly"</td></tr>
+      <tr><td>Installation</td><td class="do">"Clips to your balcony railing. Done in 45 minutes."</td><td class="dont">"Easy DIY installation process for consumers"</td></tr>
+      <tr><td>Eco angle</td><td class="do">"Your fridge runs on sunshine. OPEC can't bill you for sunshine."</td><td class="dont">"Join the green energy revolution today"</td></tr>
+      <tr><td>BNPL</td><td class="do">"From £29/mo — you'll save more on your bill than you pay us"</td><td class="dont">"Flexible finance options available"</td></tr>
+      <tr><td>Renters</td><td class="do">"Your landlord can't stop you. No drilling. No marks."</td><td class="dont">"Suitable for rental properties subject to landlord approval"</td></tr>
+      <tr><td>Technical spec</td><td class="do">"800W — enough to run your fridge, router, and TV, free"</td><td class="dont">"800W peak output with Hoymiles G98-compliant microinverter"</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sect-label">Social media</div>
+  <h2 class="sect-title">TikTok & Instagram scripts</h2>
+
+  <div class="hl sun" style="margin-bottom:24px">
+    <p><strong style="font-weight:500">Strategy:</strong> TikTok = top-of-funnel awareness. Instagram = lifestyle + trust. Post to TikTok first, re-use best-performing content on Instagram Reels. Aim for 3–5 posts/week across both. Energy price cap announcements = drop everything and post the same day.</p>
+  </div>
+
+  <div class="script-card">
+    <div class="script-type">Script 1 · TikTok/Reels · Hook: Energy bill shock</div>
+    <div class="script-hook">"I just halved my electricity bill with a £29/month panel that clips to my balcony."</div>
+    <div class="script-body">[HOOK - 0s]
+Hold up your energy bill to camera, face in shock.
+"My electricity bill is £110 a month. This thing is £29 a month."
+
+[BUILD - 3s]
+Show the panel on the railing, close up.
+"It clips to any balcony railing. No drill. No electrician. Just plug it into this normal socket."
+
+[PROOF - 8s]
+Open the Sola app showing live generation.
+"Right now it's generating 340 watts. That's my fridge and router running for free."
+
+[CLOSE - 14s]
+"I've been saving £13 a month on my bill since I installed it. More than the subscription costs me."
+Text overlay: "Sola 400W — from £29/mo"
+
+[CTA - 18s]
+"Link in bio. And yes — your landlord cannot stop you."</div>
+    <div class="script-cta">Ideal length: 20–25 seconds</div>
+    <div class="tag-row">
+      <span class="script-tag">#pluginsolar</span><span class="script-tag">#energybills</span><span class="script-tag">#renterhack</span><span class="script-tag">#balconysolar</span><span class="script-tag">#solarpanels</span>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-type">Script 2 · TikTok/Reels · Hook: Install tutorial</div>
+    <div class="script-hook">"I installed my own solar panel in 40 minutes. Here's exactly how."</div>
+    <div class="script-body">[HOOK - 0s]
+"People say solar is expensive and complicated. I'll show you it's neither."
+
+[STEP 1 - 3s]
+Unbox on floor. "Here's what you get: two panels, the inverter box, and the railing clamp. That's it."
+
+[STEP 2 - 8s]
+Time-lapse of clipping bracket to balcony railing.
+"Step one: clamp this bracket to your railing. Zero drilling. Completely removable."
+
+[STEP 3 - 14s]
+Tilt panel south. "Step two: slide the panel in, tilt it south — or south-west, that's fine."
+
+[STEP 4 - 18s]
+Plug into socket. "Step three: plug this into your wall socket. Done. You're generating solar power."
+
+[RESULT - 22s]
+Open app. "It's been up for ten minutes. Already saved 0.08p. Over a year, that adds up to about £130."</div>
+    <div class="script-cta">Ideal length: 30 seconds</div>
+    <div class="tag-row">
+      <span class="script-tag">#diyinstall</span><span class="script-tag">#pluginsolar</span><span class="script-tag">#solarpanel</span><span class="script-tag">#savemoney</span>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-type">Script 3 · TikTok · Hook: Price cap reaction (publish same day as Ofgem news)</div>
+    <div class="script-hook">"The energy price cap just went up. Here's what I'm doing about it."</div>
+    <div class="script-body">[HOOK - 0s]
+Green screen: Ofgem headline in background.
+"Bills going up again. Brilliant."
+
+[PIVOT - 3s]
+"Here's the thing though — there's now a legal way to generate your own electricity from your balcony."
+
+[EXPLAIN - 6s]
+"The UK just changed the law this year. Sub-800W solar panels can now plug straight into your wall socket. No electrician. No permission needed for most renters."
+
+[PROOF - 12s]
+Show app savings screen.
+"I've been using one for two months. Saved £24 so far. Each time the price cap goes up, it saves me even more because my solar is free."
+
+[CTA - 18s]
+"It's £29 a month. Link in bio. You'll save more than that."</div>
+    <div class="script-cta">Publish within 2 hours of energy news breaking</div>
+    <div class="tag-row">
+      <span class="script-tag">#energypricecap</span><span class="script-tag">#energybills</span><span class="script-tag">#ofgem</span><span class="script-tag">#solarpanels</span>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-type">Script 4 · Instagram Reels / Carousel · Cost-conscious (older audience)</div>
+    <div class="script-hook">"The maths on balcony solar. Is it actually worth it?"</div>
+    <div class="script-body">Slide 1: "The Sola 400W kit: £399 upfront or £29/month"
+Slide 2: "It generates ~650 kWh/year — worth £156 at today's prices"
+Slide 3: "Upfront: 2.6-year payback. Then it's pure savings for 10+ years."
+Slide 4: "Subscription: You save MORE than you pay from month 3 onwards"
+Slide 5: "Your bills go DOWN. The kit eventually pays for itself."
+Slide 6: "Moves with you when you leave. Your landlord cannot say no."
+Slide 7: "Sola.co.uk — link in bio — from £29/month"</div>
+    <div class="script-cta">Carousel format · 7 slides · use data-forward design</div>
+    <div class="tag-row">
+      <span class="script-tag">#personalfinance</span><span class="script-tag">#energysaving</span><span class="script-tag">#moneysavingtips</span>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-type">Script 5 · TikTok · Hook: Landlord rights angle</div>
+    <div class="script-hook">"Your landlord legally cannot stop you from doing this."</div>
+    <div class="script-body">[HOOK - 0s]
+"If you rent in England or Wales, I have genuinely good news."
+
+[LAW - 3s]
+"The Renters Rights Act 2025. Landlords cannot unreasonably refuse improvements that don't structurally modify the property."
+
+[EXPLAIN - 8s]
+"This solar panel clamps to your balcony railing. Zero drilling. Completely removable. Leaves zero marks."
+
+[LEGAL NOTE - 12s]
+"It's also now legal in the UK — they changed the wiring regulations in April 2026."
+
+[CLOSE - 16s]
+"You notify your landlord, they can't say no, you start generating your own electricity."
+"Your energy company is not going to be happy. That's not your problem."</div>
+    <div class="script-cta">Ideal length: 22 seconds · huge renter audience</div>
+    <div class="tag-row">
+      <span class="script-tag">#renterrights</span><span class="script-tag">#rentertips</span><span class="script-tag">#landlordproblems</span><span class="script-tag">#pluginsolar</span>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-type">Script 6 · TikTok · Hook: Geopolitical energy security</div>
+    <div class="script-hook">"Why I stopped letting Middle East conflicts decide my electricity bill."</div>
+    <div class="script-body">[HOOK - 0s]
+"Every time something happens in the Middle East, my energy bill goes up. I'm done with that."
+
+[CONTEXT - 3s]
+"Gas prices are set on global markets. UK government actually used the phrase 'in response to the Middle East conflict' when they legalised this."
+
+[SOLUTION - 8s]
+Show panel on balcony.
+"This is mine. Two panels on my balcony railing. They generate electricity from the sun. The sun doesn't care about OPEC."
+
+[CLOSE - 14s]
+"No one can sanction sunshine. No pipeline can be cut off. £29 a month and my fridge runs free."</div>
+    <div class="script-cta">Strong for energy security / politically engaged audience</div>
+    <div class="tag-row">
+      <span class="script-tag">#energysecurity</span><span class="script-tag">#solarenergy</span><span class="script-tag">#energyindependence</span>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sect-label">Content calendar</div>
+  <h2 class="sect-title">Sample week of content</h2>
+
+  <div class="cal-week">
+    <div class="cal-day"><div class="cal-day-name">Mon</div><div class="cal-item cal-tiktok">TikTok: Install tutorial (Script 2)</div><div class="cal-item cal-ig">IG: Product aesthetic shot</div></div>
+    <div class="cal-day"><div class="cal-day-name">Tue</div><div class="cal-item cal-email">Email: Weekly savings update to customers</div></div>
+    <div class="cal-day"><div class="cal-day-name">Wed</div><div class="cal-item cal-tiktok">TikTok: Bill shock hook (Script 1)</div><div class="cal-item cal-ig">IG Story: App screenshot savings</div></div>
+    <div class="cal-day"><div class="cal-day-name">Thu</div><div class="cal-item cal-blog">Blog: "Can my landlord refuse a solar panel?" SEO post</div></div>
+    <div class="cal-day"><div class="cal-day-name">Fri</div><div class="cal-item cal-tiktok">TikTok: Renter rights angle (Script 5)</div><div class="cal-item cal-ig">IG: Customer review carousel</div></div>
+    <div class="cal-day"><div class="cal-day-name">Sat</div><div class="cal-item cal-ig">IG: Weekend lifestyle shot — sunny balcony</div></div>
+    <div class="cal-day"><div class="cal-day-name">Sun</div><div class="cal-empty">Rest / prep next week</div></div>
+  </div>
+
+  <div class="hl sun">
+    <p><strong style="font-weight:500">Trigger events → drop everything and post:</strong> Ofgem price cap announcement · Middle East energy news · Government solar announcement · Unusually sunny weekend · Energy company profits announcement (use the contrast). Pre-write these scripts now so you can publish within 2 hours of news breaking.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sect-label">Email marketing</div>
+  <h2 class="sect-title">Post-purchase email flow</h2>
+
+  <div class="flow">
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot fill"></div><div class="flow-vline"></div></div>
+      <div class="flow-content">
+        <div class="flow-day">Day 0 — Order confirmation</div>
+        <div class="flow-subject">Your Sola 400 is on its way ☀️</div>
+        <div class="flow-preview">Order details + tracking. Quick "what to expect" — arrives in 3–5 days, everything you need is in the box. Link to installation video. Build excitement.</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot fill"></div><div class="flow-vline"></div></div>
+      <div class="flow-content">
+        <div class="flow-day">Day 3 — Pre-install</div>
+        <div class="flow-subject">Before you unbox: one thing to do first</div>
+        <div class="flow-preview">Check your balcony direction — use Google Maps or the Sola app. South or south-west = optimal. Eastward is fine. Include the landlord template letter if they need it. Manage expectations warmly.</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot fill"></div><div class="flow-vline"></div></div>
+      <div class="flow-content">
+        <div class="flow-day">Day 7 — First week savings</div>
+        <div class="flow-subject">How much did your solar save this week?</div>
+        <div class="flow-preview">Prompt to open the app and check. Show them how to read their generation data. Include the maths: "at this rate, you'll save £X this year." Reinforce the purchase decision. Share on social CTA.</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot fill"></div><div class="flow-vline"></div></div>
+      <div class="flow-content">
+        <div class="flow-day">Day 30 — Review request</div>
+        <div class="flow-subject">One month of free electricity — what do you think?</div>
+        <div class="flow-preview">Ask for a Trustpilot / Google review. Show their personal month-1 savings from app data. Introduce the referral programme: "give a friend £25 off, get £25 credit." Soft upsell: battery add-on for evening savings.</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot fill"></div><div class="flow-vline"></div></div>
+      <div class="flow-content">
+        <div class="flow-day">Month 3 — Battery upsell</div>
+        <div class="flow-subject">Your panels generated X kWh last month. Here's how to save even more.</div>
+        <div class="flow-preview">Introduce the Sola Battery add-on. Show the maths: without battery = 40% self-consumption. With battery = 75%. "If you're out during the day, you're losing half your solar generation." Offer 10% loyalty discount.</div>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-line"><div class="flow-dot"></div></div>
+      <div class="flow-content">
+        <div class="flow-day">Month 6 — Price cap / news moment</div>
+        <div class="flow-subject">Bills going up again. Yours aren't (as much).</div>
+        <div class="flow-preview">Triggered by price cap announcement. Remind them their solar means this hurts less. Referral push: "your neighbours are about to get hit. Help them." Builds loyalty and drives word-of-mouth at perfect moment.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sect-label">Tools & automation</div>
+  <h2 class="sect-title">The lean marketing stack</h2>
+  <div class="grid3">
+    <div class="card">
+      <div class="card-title">Content scheduling</div>
+      <div class="card-body"><strong style="font-weight:500">Buffer</strong> (free–£12/mo) or <strong style="font-weight:500">Later</strong> (£16/mo). Schedule a month of posts in one 2-hour session. TikTok requires native upload for full reach — schedule the draft, post natively. Instagram can auto-post via API.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Email marketing</div>
+      <div class="card-body"><strong style="font-weight:500">Klaviyo</strong> (free to 250 contacts, then ~£20/mo). Shopify-native integration. Set up all flows above once — they run forever. Segment by: purchase tier, days since install, app engagement.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">AI content generation</div>
+      <div class="card-body">Use Claude to write a full month of captions, scripts, and email copy in one session. Feed in energy news headlines and ask for reactive posts. Build a "brand voice prompt" once — paste it at the start of every session to ensure consistency.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Customer support</div>
+      <div class="card-body"><strong style="font-weight:500">Tidio</strong> (£19/mo) or <strong style="font-weight:500">Gorgias</strong> (Shopify-native, £10/mo). AI chatbot handles 60–70% of queries. Ticket system for the rest. Use Claude to draft your FAQ knowledge base content.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">SEO content</div>
+      <div class="card-body">Target: "can I install solar panels in rented house UK," "plug in solar panels UK," "balcony solar UK," "save money on energy bills UK." Write one long-form guide per month. These rank fast in a new market with little competition.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">PR moments</div>
+      <div class="card-body">Set a Google Alert for: "energy price cap," "Ofgem," "plug-in solar UK," "balcony solar." Pre-write reactive templates for each scenario. Submit to MoneySavingExpert forum, Which? reader stories, local BBC features. Zero-cost earned media.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sect-label">Market positioning</div>
+  <h2 class="sect-title">Why Sola wins against the competition</h2>
+  <table class="comp-table">
+    <tr>
+      <th>Feature</th>
+      <th class="ours">Sola</th>
+      <th>Lidl / Iceland</th>
+      <th>EcoFlow direct</th>
+      <th>Generic Amazon</th>
+    </tr>
+    <tr>
+      <td>Subscription / BNPL</td>
+      <td class="ours check">✓ From £29/mo</td>
+      <td class="cross">✗ Upfront only</td>
+      <td class="cross">✗ Upfront only</td>
+      <td class="cross">✗ Upfront only</td>
+    </tr>
+    <tr>
+      <td>Renter-specific positioning</td>
+      <td class="ours check">✓ Core message</td>
+      <td class="cross">✗ Generic</td>
+      <td class="cross">✗ Generic</td>
+      <td class="cross">✗ None</td>
+    </tr>
+    <tr>
+      <td>Compact apartment-sized panels</td>
+      <td class="ours check">✓ Hero SKU</td>
+      <td class="cross">✗ Standard size</td>
+      <td class="cross">✗ Standard size</td>
+      <td class="cross">✗ Variable</td>
+    </tr>
+    <tr>
+      <td>UK customer support</td>
+      <td class="ours check">✓ Yes</td>
+      <td>Retailer support</td>
+      <td class="cross">Chinese timezone</td>
+      <td class="cross">Often none</td>
+    </tr>
+    <tr>
+      <td>Savings calculator / education</td>
+      <td class="ours check">✓ On site</td>
+      <td class="cross">✗</td>
+      <td>Basic</td>
+      <td class="cross">✗</td>
+    </tr>
+    <tr>
+      <td>Landlord letter template</td>
+      <td class="ours check">✓ Included</td>
+      <td class="cross">✗</td>
+      <td class="cross">✗</td>
+      <td class="cross">✗</td>
+    </tr>
+    <tr>
+      <td>Community / ongoing value</td>
+      <td class="ours check">✓ Discord, email</td>
+      <td class="cross">✗</td>
+      <td class="cross">✗</td>
+      <td class="cross">✗</td>
+    </tr>
+  </table>
+</div>
+
+</div>
+</body>
+</html>
