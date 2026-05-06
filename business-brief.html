@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sola — Business Brief: Pricing, Market & Shipping</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--sun:#F5A623;--sun-l:#FFF3DC;--teal:#1A6B5A;--teal-l:#E0F2EE;--slate:#1C2B2A;--muted:#6B7B7A;--border:#E2E8E7;--bg:#F5F8F7;--white:#fff;--red:#C0392B;--red-l:#FDECEA}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--slate);font-size:14px;line-height:1.6}
+.header{background:var(--slate);padding:28px 48px;display:flex;align-items:center;gap:16px}
+.logo{font-family:'DM Serif Display',serif;font-size:28px;color:white}
+.header p{font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px}
+.body{max-width:1060px;margin:0 auto;padding:48px}
+.section{margin-bottom:52px}
+.sect-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.sect-title{font-family:'DM Serif Display',serif;font-size:32px;color:var(--slate);margin-bottom:24px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px}
+.card.sun{border-left:4px solid var(--sun);background:var(--sun-l)}
+.card.teal{border-left:4px solid var(--teal);background:var(--teal-l)}
+.card.red{border-left:4px solid var(--red);background:var(--red-l)}
+.card-label{font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin-bottom:6px}
+.card-value{font-size:22px;font-weight:500;font-family:'DM Mono',monospace}
+.card-sub{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.6}
+.prose{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:1rem}
+.hl{padding:14px 18px;border-radius:0 10px 10px 0;margin-bottom:16px;font-size:13px;line-height:1.65}
+.hl.teal{background:var(--teal-l);border-left:3px solid var(--teal)}
+.hl.sun{background:var(--sun-l);border-left:3px solid var(--sun)}
+.hl.red{background:var(--red-l);border-left:3px solid var(--red)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:0}
+th{text-align:left;padding:8px 12px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg)}
+td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.pos{color:var(--teal);font-weight:500}
+.neg{color:var(--red)}
+.bold{font-weight:500}
+.mono{font-family:'DM Mono',monospace}
+.row-highlight{background:#F0FAF7}
+.divider{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.badge{display:inline-block;font-size:10px;padding:2px 10px;border-radius:100px;font-weight:500}
+.badge-teal{background:var(--teal-l);color:var(--teal)}
+.badge-sun{background:var(--sun-l);color:#7A5200}
+.badge-red{background:var(--red-l);color:var(--red)}
+.cal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:0}
+.cal-month{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px}
+.cal-name{font-size:12px;font-weight:500;margin-bottom:8px;color:var(--slate)}
+.cal-item{font-size:11px;padding:4px 8px;border-radius:6px;margin-bottom:4px;line-height:1.4}
+.ci-sun{background:var(--sun-l);color:#7A5200}
+.ci-teal{background:var(--teal-l);color:var(--teal)}
+.ci-red{background:var(--red-l);color:var(--red)}
+.ci-slate{background:rgba(28,43,42,0.07);color:var(--slate)}
+.ship-table{background:var(--white);border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.mkt-row{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start}
+.mkt-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;background:var(--teal-l)}
+.mkt-body h4{font-size:13px;font-weight:500;margin-bottom:3px}
+.mkt-body p{font-size:12px;color:var(--muted);line-height:1.55}
+@media(max-width:780px){.grid2,.grid3,.cal-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="logo">Sola<span style="width:7px;height:7px;border-radius:50%;background:#F5A623;display:inline-block;margin-left:3px;vertical-align:middle;margin-bottom:3px"></span></div>
+    <p>Business Brief — Pricing · Market size · Shipping · Marketing calendar</p>
+  </div>
+</div>
+
+<div class="body">
+
+<div class="section">
+  <div class="sect-label">Pricing & margins</div>
+  <h2 class="sect-title">Revised pricing across all three kits</h2>
+
+  <div class="hl teal">
+    <strong>The £300 upfront / £20pm subscription on the 400W is feasible</strong> — but tight at early-stage COGS of ~£175. Your gross margin drops to ~43% vs the original ~55%. That's still commercially viable; the tradeoff is you need slightly higher volume to cover fixed overheads. At scale (200+ unit orders), COGS drops toward £140 and margin recovers to ~53%.
+  </div>
+
+  <div style="background:var(--white);border-radius:14px;overflow:hidden;border:1px solid var(--border);margin-bottom:20px">
+  <table>
+    <tr><th>Kit</th><th>Upfront price</th><th>Sub price</th><th>Sub total (18mo)</th><th>Landed COGS</th><th>Gross profit (upfront)</th><th>Gross margin</th></tr>
+    <tr>
+      <td class="bold">Sola 200 Starter</td>
+      <td class="mono">£189</td>
+      <td class="mono">£13/mo</td>
+      <td class="mono">£234</td>
+      <td class="mono">£100–120</td>
+      <td class="mono pos">£69–89</td>
+      <td class="pos">37–47%</td>
+    </tr>
+    <tr class="row-highlight">
+      <td class="bold">Sola 400 Hero ⭐</td>
+      <td class="mono">£300</td>
+      <td class="mono">£20/mo</td>
+      <td class="mono">£360</td>
+      <td class="mono">£155–175</td>
+      <td class="mono pos">£125–145</td>
+      <td class="pos">42–48%</td>
+    </tr>
+    <tr>
+      <td class="bold">Sola 800 Pro</td>
+      <td class="mono">£549</td>
+      <td class="mono">£35/mo</td>
+      <td class="mono">£630</td>
+      <td class="mono">£240–280</td>
+      <td class="mono pos">£269–309</td>
+      <td class="pos">49–56%</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="hl sun">
+    <strong>On the ROI framing at £20/month:</strong> The Hero 400W saves £10–13/month on bills. Net monthly cost to consumer is £7–10. This is a better pitch than £29/month (was £16–19 net), but still not cash-positive from month 1. The honest framing remains: "spread the cost, own it outright after 18 months, then save forever." At £300 upfront, the payback is a genuinely strong 2.0–2.3 years — lead with that for upfront buyers.
+  </div>
+
+  <div class="hl red">
+    <strong>The hard truth about month-1 cash-positivity:</strong> To be genuinely net-positive from month 1, the monthly payment would need to be below ~£10. At that level you collect only £180 over 18 months — below your COGS. There is no pricing at which this product is cash-positive from month 1 without either subsidising it (a loss-leader) or waiting for COGS to fall further at scale. <strong>The right move: don't promise month-1 ROI. Instead, say "lowest monthly cost of any kit on the market — own it outright in 18 months, saving for 10+ years after."</strong>
+  </div>
+
+  <h3 style="font-size:15px;font-weight:500;margin-bottom:14px">Consumer ROI by kit — honest numbers</h3>
+  <div style="background:var(--white);border-radius:14px;overflow:hidden;border:1px solid var(--border)">
+  <table>
+    <tr><th>Kit</th><th>Annual saving</th><th>Monthly saving</th><th>Sub net cost/mo</th><th>Upfront payback</th><th>Year 5 net gain</th></tr>
+    <tr>
+      <td class="bold">Sola 200</td>
+      <td>£70–90</td>
+      <td>£5.8–7.5</td>
+      <td class="neg">£5–7 out of pocket</td>
+      <td>2.1–2.7 yrs</td>
+      <td class="pos">£161–261</td>
+    </tr>
+    <tr class="row-highlight">
+      <td class="bold">Sola 400 ⭐</td>
+      <td>£120–160</td>
+      <td>£10–13</td>
+      <td class="neg">£7–10 out of pocket</td>
+      <td>1.9–2.5 yrs</td>
+      <td class="pos">£300–500</td>
+    </tr>
+    <tr>
+      <td class="bold">Sola 800</td>
+      <td>£160–200</td>
+      <td>£13–17</td>
+      <td class="neg">£18–22 out of pocket</td>
+      <td>2.7–3.4 yrs</td>
+      <td class="pos">£251–451</td>
+    </tr>
+  </table>
+  </div>
+  <p class="prose" style="margin-top:10px">Year 5 net gain = (5 × annual saving) − upfront price. Assumes subscriber pays upfront equivalent at subscription total price. Note: 800W kit generates more absolute £ over time despite longer payback due to higher annual saving.</p>
+</div>
+
+<hr class="divider"/>
+
+<div class="section">
+  <div class="sect-label">Total addressable market</div>
+  <h2 class="sect-title">Who can actually use Sola?</h2>
+
+  <div class="hl teal">The UK market is much larger than just balcony owners. The full TAM includes renters with gardens, homeowners wanting a portable/supplemental system, and even boat/caravan owners. Here's the breakdown.</div>
+
+  <div class="grid3" style="margin-bottom:20px">
+    <div class="card teal">
+      <div class="card-label">Private renter households</div>
+      <div class="card-value">4.6M+</div>
+      <div class="card-sub">England alone. Growing every year as house prices keep people renting longer. Primary target — can't get rooftop solar, can get Sola.</div>
+    </div>
+    <div class="card teal">
+      <div class="card-label">UK homes with gardens</div>
+      <div class="card-value">~21M</div>
+      <div class="card-sub">87% of UK's ~24M households have garden access. Includes renters and owners. Garden installs need no balcony — Sola 800 on a ground frame works for all of these.</div>
+    </div>
+    <div class="card sun">
+      <div class="card-label">UK flats (leasehold)</div>
+      <div class="card-value">~4.98M</div>
+      <div class="card-sub">70% of all leasehold homes are flats. Many have balconies or accessible outdoor space. These are your highest-concentration urban customers.</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:15px;font-weight:500;margin-bottom:14px">The four customer segments — don't just target balconies</h3>
+  <div style="background:var(--white);border-radius:14px;overflow:hidden;border:1px solid var(--border);margin-bottom:20px">
+  <table>
+    <tr><th>Segment</th><th>Est. UK households</th><th>Best product</th><th>Key message</th><th>Size of prize</th></tr>
+    <tr>
+      <td class="bold">Renter with balcony</td>
+      <td>~500K–800K</td>
+      <td>Sola 200 or 400</td>
+      <td>"Your balcony is a power station"</td>
+      <td class="badge badge-teal">Core</td>
+    </tr>
+    <tr class="row-highlight">
+      <td class="bold">Renter with garden/patio</td>
+      <td>~2M+</td>
+      <td>Sola 400 or 800</td>
+      <td>"Your garden works now — even when you rent"</td>
+      <td class="badge badge-sun">Huge</td>
+    </tr>
+    <tr>
+      <td class="bold">Homeowner wanting easy/fast solar</td>
+      <td>~5M+</td>
+      <td>Sola 800</td>
+      <td>"Start this weekend. No scaffolding, no wait."</td>
+      <td class="badge badge-sun">Huge</td>
+    </tr>
+    <tr>
+      <td class="bold">Boat/caravan/second home</td>
+      <td>~1M+</td>
+      <td>Sola 200 or 400</td>
+      <td>"Portable power, wherever you go"</td>
+      <td class="badge badge-teal">Niche/bonus</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="hl teal">
+    <strong>Garden installs are your biggest untapped segment.</strong> A Sola 800 on a ground-mount frame in a garden requires no balcony, no landlord permission (for freestanding ground installs), and generates the most savings. The "1 in 8 homes has no garden" stat means 7 in 8 do. Market this explicitly: <em>"No balcony? No problem. Garden, patio, shed roof — Sola works anywhere with sky above it."</em>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<div class="section">
+  <div class="sect-label">Shipping & delivery</div>
+  <h2 class="sect-title">Shipping costs by kit</h2>
+
+  <div class="prose">Panel dimensions and weight vary significantly — the 800W Pro ships as two large panels (172cm × 113cm × 3.5cm, 21.8kg each) and may require a pallet or oversized courier. The 200 and 400 compact panels are standard parcel territory. Your 3PL handles this automatically but you need to price delivery accurately on Shopify.</div>
+
+  <div class="ship-table" style="margin-bottom:16px">
+  <table>
+    <tr><th>Kit</th><th>Package dims (est.)</th><th>Total weight</th><th>Standard delivery (3–5 days)</th><th>Next day</th><th>Suggested charge to customer</th><th>Your margin on delivery</th></tr>
+    <tr>
+      <td class="bold">Sola 200</td>
+      <td class="mono">90×65×12cm</td>
+      <td class="mono">~8kg</td>
+      <td class="mono">£7–10</td>
+      <td class="mono">£12–16</td>
+      <td>Free standard · £9.99 next day</td>
+      <td class="pos">£0 / ~£4 margin</td>
+    </tr>
+    <tr class="row-highlight">
+      <td class="bold">Sola 400 ⭐</td>
+      <td class="mono">90×65×20cm</td>
+      <td class="mono">~16kg</td>
+      <td class="mono">£9–13</td>
+      <td class="mono">£15–20</td>
+      <td>Free standard · £12.99 next day</td>
+      <td class="pos">£0 / ~£4 margin</td>
+    </tr>
+    <tr>
+      <td class="bold">Sola 800</td>
+      <td class="mono">180×120×15cm ×2</td>
+      <td class="mono">~50kg</td>
+      <td class="mono">£25–40</td>
+      <td class="mono">£45–65</td>
+      <td>£14.99 standard · £34.99 next day</td>
+      <td class="neg">−£5 to +£5</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="grid2">
+    <div class="hl teal">
+      <strong>Strategy for 200 and 400:</strong> Offer free standard delivery — this removes friction and is the norm for electronics. Build the £9–13 shipping cost into your COGS/pricing. Charge for next day (£10–13 to customer, costs you £13–18, so small subsidy or break-even). Most customers choose free standard.
+    </div>
+    <div class="hl sun">
+      <strong>Strategy for 800:</strong> Two rigid 172cm panels make this an oversized/heavy shipment — you can't absorb it. Charge £14.99 standard (costs you ~£25–35 via 3PL with business rates, so a subsidy of ~£10–20). Honest option: offer "free delivery when you subscribe" to incentivise the subscription model, where your margin is higher anyway.
+    </div>
+  </div>
+
+  <div class="hl red">
+    <strong>Important:</strong> The 800W Pro panels (172cm × 113cm each) may exceed standard courier limits. DHL handles up to 120cm × 70cm × 70cm. At 172cm length, these may require Parcelforce 48 (up to 1.5m length) or a specialist freight carrier. Your 3PL will handle routing, but flag this when onboarding them — ask specifically about "long/large" handling and fragile electronics surcharges. Budget £30–45 per 800W delivery at first.
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<div class="section">
+  <div class="sect-label">Marketing calendar</div>
+  <h2 class="sect-title">Every date worth owning in 2026–27</h2>
+
+  <div class="hl sun">
+    <strong>Your single biggest marketing advantage:</strong> Energy news is your free marketing. Every Ofgem price cap announcement, every Middle East conflict update affecting gas prices, every cold snap — prepare reactive content in advance and publish within 2 hours of news breaking. These moments outperform any paid campaign.
+  </div>
+
+  <div class="cal-grid" style="margin-bottom:24px">
+    <div class="cal-month">
+      <div class="cal-name">January</div>
+      <div class="cal-item ci-red">Q1 Ofgem price cap — energy crisis content</div>
+      <div class="cal-item ci-slate">New Year resolutions — "cut your bills in 2027"</div>
+      <div class="cal-item ci-teal">Veganuary energy angle</div>
+    </div>
+    <div class="cal-month">
+      <div class="cal-name">February</div>
+      <div class="cal-item ci-sun">Valentine's Day — "the gift that keeps paying back"</div>
+      <div class="cal-item ci-teal">Pre-spring install push — "ready for summer"</div>
+    </div>
+    <div class="cal-month">
+      <div class="cal-name">March</div>
+      <div class="cal-item ci-red">Spring Equinox — "sun is back, bills are down"</div>
+      <div class="cal-item ci-slate">Budget / Spring Statement — energy cost reaction</div>
+      <div class="cal-item ci-sun">Mothers Day (UK) — gift angle, especially for homeowners</div>
+    </div>
+    <div class="cal-month">
+      <div class="cal-name">April</div>
+      <div class="cal-item ci-red">Q2 Ofgem cap — biggest price change moment</div>
+      <div class="cal-item ci-teal">Earth Day (22nd) — eco content push</div>
+      <div class="cal-item ci-slate">Easter — outdoor living / garden setup content</div>
+    </div>
+    <div class="cal-month">
+      <div class="cal-name">May</div>
+      <div class="cal-item ci-sun">May bank holidays — install weekend content</div>
+      <div class="cal-item ci-teal">Mental Health Awareness — outdoor space angle</div>
+      <div class="cal-item ci-slate">Renters Rights campaigns pick up — renter content push</div>
+    </div>
+    <div class="cal-month">
+      <div class="cal-name">June</div>
+      <div class="cal-item ci-sun">☀ FATHER'S DAY — "the gift that earns money" — major push</div>
+      <div class="cal-item ci-teal">Summer Solstice (21st) — "longest day, most free power"</div>
+      <div class="cal-item ci-red">June electricity bill cycle — timely content</div>
+    </div>
+    <div class="cal-month">
+      <div class="cal-name">July</div>
+      <div class="cal-item ci-sun">Summer peak generation — share customer savings screenshots</div>
+      <div class="cal-item ci-teal">Moving season — "takes 45 mins to install at new flat"</div>
+      <div class="cal-item ci-slate">Q3 Ofgem cap announcement</div>
+    </div>
+    <div class="cal-month">
+      <div class="cal-name">August</div>
+      <div class="cal-item ci-sun">Bank holiday weekend — outdoor install content</div>
+      <div class="cal-item ci-teal">Back to uni — student renter segment push</div>
+      <div class="cal-item ci-slate">Peak summer energy bills land — perfect timing</div>
+    </div>
+    <div class="cal-month">
+      <div class="cal-name">September</div>
+      <div class="cal-item ci-red">Energy price cap — autumn bills rising push</div>
+      <div class="cal-item ci-teal">Zero Waste Week (UK) — eco content</div>
+      <div class="cal-item ci-sun">Last good install month before winter — urgency content</div>
+    </div>
+    <div class="cal-month">
+      <div class="cal-name">October</div>
+      <div class="cal-item ci-red">Q4 Ofgem cap — winter bills anxiety peaks</div>
+      <div class="cal-item ci-slate">Clocks go back — "darker days, still generating" myth-bust</div>
+      <div class="cal-item ci-sun">World Habitat Day — renters rights angle</div>
+    </div>
+    <div class="cal-month">
+      <div class="cal-name">November</div>
+      <div class="cal-item ci-sun">🎄 Black Friday — biggest promo of the year</div>
+      <div class="cal-item ci-sun">Cyber Monday — online-only exclusive deal</div>
+      <div class="cal-item ci-teal">Energy crisis content intensifies — heating bills</div>
+    </div>
+    <div class="cal-month">
+      <div class="cal-name">December</div>
+      <div class="cal-item ci-sun">🎄 Christmas gift push — family, dad, eco-conscious</div>
+      <div class="cal-item ci-teal">Year-end savings summary to customers — app data</div>
+      <div class="cal-item ci-slate">January price cap pre-warning — early buyer incentive</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:15px;font-weight:500;margin-bottom:14px">Solar-specific dates and angles you should own</h3>
+  <div style="background:var(--white);border-radius:14px;overflow:hidden;border:1px solid var(--border)">
+  <table>
+    <tr><th>Date / Event</th><th>Angle</th><th>Content type</th><th>Priority</th></tr>
+    <tr><td class="bold">Every Ofgem price cap announcement (Q1, Q2, Q3, Q4)</td><td>"Bills go up. Yours go down." Reactive post within 2 hours</td><td>TikTok, email blast, paid ad</td><td class="badge badge-red">Critical</td></tr>
+    <tr class="row-highlight"><td class="bold">Father's Day (June)</td><td>"The gift that pays him back every month for 10+ years"</td><td>Gift landing page, social campaign, email</td><td class="badge badge-red">Critical</td></tr>
+    <tr><td class="bold">Black Friday (November)</td><td>Biggest single sales day — 15–20% off upfront, or "first 2 months free" on subscription</td><td>All channels, paid search</td><td class="badge badge-red">Critical</td></tr>
+    <tr><td class="bold">Earth Day (April 22)</td><td>"Clean energy from your balcony — no planning, no electrician"</td><td>Instagram carousel, press release</td><td class="badge badge-teal">High</td></tr>
+    <tr><td class="bold">Summer Solstice (June 21)</td><td>"Today the sun works 16+ hours. So does your panel." — real-time generation data</td><td>TikTok, customer savings share</td><td class="badge badge-teal">High</td></tr>
+    <tr><td class="bold">Moving season (June–August)</td><td>"Takes 45 mins to install at your new place. Panels go with you."</td><td>TikTok, Rightmove/Zoopla ad targeting</td><td class="badge badge-teal">High</td></tr>
+    <tr><td class="bold">Renters Rights Act anniversary (2026)</td><td>"One year since landlords lost the right to say no"</td><td>Blog, PR pitch, social</td><td class="badge badge-teal">High</td></tr>
+    <tr><td class="bold">Christmas (December)</td><td>"Give the gift of lower bills." Genuinely useful, not gimmicky</td><td>Gift wrapping option on site, social, email</td><td class="badge badge-teal">High</td></tr>
+    <tr><td class="bold">Middle East / energy security news</td><td>"OPEC can't bill you for sunshine." Reactive within hours</td><td>TikTok, pinned tweet/post</td><td class="badge badge-sun">Reactive</td></tr>
+    <tr><td class="bold">Cold snaps / energy price spikes</td><td>"Your solar keeps generating even in winter. Here's the data."</td><td>Customer testimonial, app screenshot</td><td class="badge badge-sun">Reactive</td></tr>
+    <tr><td class="bold">Student move-in (September)</td><td>"Students: your landlord can't say no anymore." Renter-rights push</td><td>Student Union partnerships, TikTok</td><td class="badge badge-sun">Niche</td></tr>
+  </table>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<div class="section">
+  <div class="sect-label">Packaging strategy</div>
+  <h2 class="sect-title">On-box vs. leaflet instructions</h2>
+
+  <div class="grid2">
+    <div>
+      <div class="hl teal">
+        <strong>Recommendation: hybrid approach.</strong> Print the 5-step install guide on the box (as shown in the packaging designs), but also include one thin A5 folded card inside with:<br><br>
+        1) The landlord permission template letter (pre-written, consumer just signs)<br>
+        2) The Sola app QR code and Wi-Fi pairing instructions<br>
+        3) Warranty registration card
+      </div>
+      <div class="hl sun">
+        <strong>Why on-box instructions win:</strong> Customers frequently throw away instruction leaflets before reading them. If the 5 steps are on the box itself, the instructions are always present — before, during, and after unboxing. This is what Apple does with AirPods; the packaging is the instruction manual. It also signals quality and confidence in the product's simplicity.
+      </div>
+    </div>
+    <div>
+      <div class="mkt-row"><div class="mkt-icon">📦</div><div class="mkt-body"><h4>Unboxing experience strategy</h4><p>The box opens from the top. Panel(s) visible immediately in protective foam. Inverter and cable in a branded tray underneath. One card on top with just three words: "Plug in. Generate. Save." Everything else is on the box exterior.</p></div></div>
+      <div class="mkt-row"><div class="mkt-icon">♻️</div><div class="mkt-body"><h4>Sustainable packaging signal</h4><p>Use recycled card (FSC certified). Print "100% recycled packaging" on the box — this resonates with your eco audience and costs ~£1–2 extra per unit. The box should be strong enough to reuse for storage — don't make it feel disposable.</p></div></div>
+      <div class="mkt-row"><div class="mkt-icon">🎁</div><div class="mkt-body"><h4>Gift-worthy design</h4><p>Father's Day and Christmas require a gift-ready box. The amber/teal/dark colourway already looks premium. Add "Gift wrapping available" at checkout (£3.99 extra — free money, zero effort for 3PL).</p></div></div>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
