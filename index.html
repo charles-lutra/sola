@@ -4,58 +4,141 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sola — Pages</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fffaf2;
-      --ink: #1a1a1a;
-      --muted: #6b6b6b;
-      --accent: #f4a300;
-      --card: #ffffff;
-      --border: #ececec;
+      --sun: #F5A623;
+      --sun-l: #FFF3DC;
+      --teal: #1A6B5A;
+      --teal-l: #E0F2EE;
+      --slate: #1C2B2A;
+      --slate-mid: #3D4F4E;
+      --muted: #6B7B7A;
+      --bg: #F8F6F1;
+      --card: #FFFFFF;
+      --border: rgba(28, 43, 42, 0.12);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
-      color: var(--ink);
-      line-height: 1.5;
+      color: var(--slate);
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
-    .wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 96px; }
-    header { margin-bottom: 40px; }
+    .serif { font-family: 'DM Serif Display', Georgia, serif; }
+
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 72px 24px 96px;
+    }
+
+    header {
+      margin-bottom: 48px;
+    }
     .logo {
-      display: inline-flex; align-items: center; gap: 12px;
-      font-weight: 700; font-size: 28px; letter-spacing: -0.02em;
+      display: block;
+      width: 200px;
+      height: auto;
+      margin-bottom: 28px;
     }
-    .sun {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #ffd667, var(--accent));
-      box-shadow: 0 0 0 4px rgba(244, 163, 0, 0.15);
+    h1 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+      font-size: 44px;
+      letter-spacing: -0.01em;
+      color: var(--slate);
+      margin: 8px 0 10px;
+      line-height: 1.1;
     }
-    h1 { font-size: 40px; letter-spacing: -0.02em; margin: 24px 0 8px; }
-    .lede { color: var(--muted); font-size: 17px; margin: 0 0 32px; }
+    .lede {
+      color: var(--muted);
+      font-size: 17px;
+      margin: 0 0 8px;
+      max-width: 540px;
+    }
+
     .grid { display: grid; gap: 14px; }
+
     a.card {
-      display: block; padding: 20px 22px;
-      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-      text-decoration: none; color: inherit;
+      display: block;
+      padding: 22px 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      text-decoration: none;
+      color: inherit;
       transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+      position: relative;
     }
     a.card:hover {
       transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-      border-color: var(--accent);
+      box-shadow: 0 6px 20px rgba(28, 43, 42, 0.06);
+      border-color: var(--teal);
     }
-    .card .title { font-weight: 600; font-size: 17px; margin-bottom: 4px; }
-    .card .desc { color: var(--muted); font-size: 14px; }
-    footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
+    .card .title {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+      font-size: 22px;
+      color: var(--slate);
+      margin-bottom: 4px;
+      line-height: 1.25;
+    }
+    .card .desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .card .arrow {
+      position: absolute;
+      top: 22px;
+      right: 24px;
+      color: var(--muted);
+      font-size: 18px;
+      transition: color 0.12s ease, transform 0.12s ease;
+    }
+    a.card:hover .arrow {
+      color: var(--teal);
+      transform: translateX(2px);
+    }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      .wrap { padding: 48px 20px 72px; }
+      h1 { font-size: 36px; }
+      .logo { width: 170px; }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <div class="logo"><span class="sun" aria-hidden="true"></span> Sola</div>
+      <svg class="logo" viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg" aria-label="Sola">
+        <circle cx="40" cy="40" r="28" fill="#F5A623"></circle>
+        <g stroke="#1C2B2A" stroke-width="2" stroke-linecap="round" opacity="0.25">
+          <line x1="40" y1="6" x2="40" y2="2"></line>
+          <line x1="40" y1="74" x2="40" y2="78"></line>
+          <line x1="6" y1="40" x2="2" y2="40"></line>
+          <line x1="74" y1="40" x2="78" y2="40"></line>
+          <line x1="15.7" y1="15.7" x2="13.0" y2="13.0"></line>
+          <line x1="64.3" y1="64.3" x2="67.0" y2="67.0"></line>
+          <line x1="64.3" y1="15.7" x2="67.0" y2="13.0"></line>
+          <line x1="15.7" y1="64.3" x2="13.0" y2="67.0"></line>
+        </g>
+        <circle cx="40" cy="40" r="14" fill="#1C2B2A" opacity="0.12"></circle>
+        <text x="90" y="54" font-family="'DM Serif Display', Georgia, serif" font-size="42" font-weight="400" fill="#1C2B2A" letter-spacing="-0.5">Sola</text>
+      </svg>
       <h1>Pages</h1>
       <p class="lede">Working documents and prototypes for Sola — sun in a box.</p>
     </header>
@@ -64,22 +147,28 @@
       <a class="card" href="homepage.html">
         <div class="title">Homepage</div>
         <div class="desc">Sola — Sun in a box. Product landing page prototype.</div>
+        <span class="arrow">→</span>
       </a>
       <a class="card" href="business-brief.html">
         <div class="title">Business Brief</div>
         <div class="desc">Pricing, market and shipping overview.</div>
+        <span class="arrow">→</span>
       </a>
       <a class="card" href="financial-model.html">
         <div class="title">Financial Model</div>
         <div class="desc">Working financials and projections.</div>
+        <span class="arrow">→</span>
       </a>
       <a class="card" href="brand-social.html">
         <div class="title">Brand &amp; Social Playbook</div>
         <div class="desc">Brand guidelines and social media playbook.</div>
+        <span class="arrow">→</span>
       </a>
     </nav>
 
-    <footer>Add new pages by dropping HTML files into the repo and linking them here.</footer>
+    <footer>
+      Add new pages by dropping HTML files into the repo and linking them here.
+    </footer>
   </div>
 </body>
 </html>
