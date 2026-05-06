@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sola — Pages</title>
+  <style>
+    :root {
+      --bg: #fffaf2;
+      --ink: #1a1a1a;
+      --muted: #6b6b6b;
+      --accent: #f4a300;
+      --card: #ffffff;
+      --border: #ececec;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 96px; }
+    header { margin-bottom: 40px; }
+    .logo {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-weight: 700; font-size: 28px; letter-spacing: -0.02em;
+    }
+    .sun {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ffd667, var(--accent));
+      box-shadow: 0 0 0 4px rgba(244, 163, 0, 0.15);
+    }
+    h1 { font-size: 40px; letter-spacing: -0.02em; margin: 24px 0 8px; }
+    .lede { color: var(--muted); font-size: 17px; margin: 0 0 32px; }
+    .grid { display: grid; gap: 14px; }
+    a.card {
+      display: block; padding: 20px 22px;
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      text-decoration: none; color: inherit;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+    }
+    a.card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      border-color: var(--accent);
+    }
+    .card .title { font-weight: 600; font-size: 17px; margin-bottom: 4px; }
+    .card .desc { color: var(--muted); font-size: 14px; }
+    footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo"><span class="sun" aria-hidden="true"></span> Sola</div>
+      <h1>Pages</h1>
+      <p class="lede">Working documents and prototypes for Sola — sun in a box.</p>
+    </header>
+
+    <nav class="grid">
+      <a class="card" href="homepage.html">
+        <div class="title">Homepage</div>
+        <div class="desc">Sola — Sun in a box. Product landing page prototype.</div>
+      </a>
+      <a class="card" href="business-brief.html">
+        <div class="title">Business Brief</div>
+        <div class="desc">Pricing, market and shipping overview.</div>
+      </a>
+      <a class="card" href="financial-model.html">
+        <div class="title">Financial Model</div>
+        <div class="desc">Working financials and projections.</div>
+      </a>
+      <a class="card" href="brand-social.html">
+        <div class="title">Brand &amp; Social Playbook</div>
+        <div class="desc">Brand guidelines and social media playbook.</div>
+      </a>
+    </nav>
+
+    <footer>Add new pages by dropping HTML files into the repo and linking them here.</footer>
+  </div>
+</body>
+</html>
