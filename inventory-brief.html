@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sola — Inventory Management Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--sun:#F5A623;--sun-l:#FFF3DC;--teal:#1A6B5A;--teal-l:#E0F2EE;--slate:#1C2B2A;--muted:#6B7B7A;--border:#E2E8E7;--bg:#F5F8F7;--white:#fff;--red:#C0392B;--red-l:#FDECEA}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--slate);font-size:14px;line-height:1.6}
+.header{background:var(--slate);padding:28px 48px;display:flex;align-items:center;gap:16px}
+.logo{font-family:'DM Serif Display',serif;font-size:28px;color:white}
+.header p{font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px}
+.body{max-width:1060px;margin:0 auto;padding:48px}
+.section{margin-bottom:52px}
+.sect-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.sect-title{font-family:'DM Serif Display',serif;font-size:32px;color:var(--slate);margin-bottom:24px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px}
+.card.sun{border-left:4px solid var(--sun);background:var(--sun-l)}
+.card.teal{border-left:4px solid var(--teal);background:var(--teal-l)}
+.card.red{border-left:4px solid var(--red);background:var(--red-l)}
+.card-label{font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin-bottom:6px}
+.card-title{font-size:14px;font-weight:500;margin-bottom:8px}
+.card-value{font-size:22px;font-weight:500;font-family:'DM Mono',monospace}
+.card-sub{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.6}
+.card-body{font-size:13px;color:var(--muted);line-height:1.7}
+.prose{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:1rem}
+.hl{padding:14px 18px;border-radius:0 10px 10px 0;margin-bottom:16px;font-size:13px;line-height:1.65}
+.hl.teal{background:var(--teal-l);border-left:3px solid var(--teal)}
+.hl.sun{background:var(--sun-l);border-left:3px solid var(--sun)}
+.hl.red{background:var(--red-l);border-left:3px solid var(--red)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:0}
+th{text-align:left;padding:8px 12px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg)}
+td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.pos{color:var(--teal);font-weight:500}
+.neg{color:var(--red)}
+.bold{font-weight:500}
+.mono{font-family:'DM Mono',monospace}
+.row-highlight{background:#F0FAF7}
+.divider{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.badge{display:inline-block;font-size:10px;padding:2px 10px;border-radius:100px;font-weight:500}
+.badge-teal{background:var(--teal-l);color:var(--teal)}
+.badge-sun{background:var(--sun-l);color:#7A5200}
+.badge-red{background:var(--red-l);color:var(--red)}
+
+/* PHASE TIMELINE */
+.phase-row{display:flex;flex-direction:column;gap:0}
+.phase-item{display:flex;gap:0;align-items:stretch}
+.phase-line{display:flex;flex-direction:column;align-items:center;width:32px;flex-shrink:0}
+.phase-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--teal);background:var(--white);flex-shrink:0;margin-top:4px}
+.phase-dot.fill{background:var(--teal)}
+.phase-dot.sun{background:var(--sun);border-color:var(--sun)}
+.phase-vline{width:2px;flex:1;background:var(--border);margin:4px 0}
+.phase-content{padding:0 0 28px 16px;flex:1}
+.phase-period{font-size:11px;color:var(--teal);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.phase-title{font-size:15px;font-weight:500;margin-bottom:6px}
+.phase-desc{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* FORMULA BOX */
+.formula{background:var(--slate);border-radius:12px;padding:20px 24px;margin-bottom:16px}
+.formula-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px}
+.formula-eq{font-family:'DM Mono',monospace;font-size:15px;color:white;line-height:1.5}
+.formula-eq span{color:var(--sun)}
+
+/* DECISION FRAMEWORK */
+.decision-step{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:10px;display:flex;gap:16px;align-items:flex-start}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--teal);color:white;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-body h4{font-size:13px;font-weight:500;margin-bottom:4px}
+.step-body p{font-size:12px;color:var(--muted);line-height:1.55}
+
+/* FREIGHT COMPARE */
+.freight-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.freight-card{border-radius:12px;padding:22px;border:1px solid var(--border)}
+.freight-card.sea{background:var(--teal-l);border-color:#B8DEDA}
+.freight-card.air{background:var(--sun-l);border-color:#F0D9A8}
+.freight-title{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px}
+.freight-title.sea{color:var(--teal)}
+.freight-title.air{color:#7A5200}
+.freight-stat{margin-bottom:10px}
+.freight-stat-label{font-size:11px;color:var(--muted);margin-bottom:2px}
+.freight-stat-value{font-family:'DM Mono',monospace;font-size:16px;font-weight:500}
+
+@media(max-width:780px){.grid2,.grid3,.freight-compare{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="logo">Sola<span style="width:7px;height:7px;border-radius:50%;background:#F5A623;display:inline-block;margin-left:3px;vertical-align:middle;margin-bottom:3px"></span></div>
+    <p>Business Brief — Inventory Management · Freight · Reorder Strategy · Scaling</p>
+  </div>
+</div>
+
+<div class="body">
+
+<!-- CORE TENSION -->
+<div class="section">
+  <div class="sect-label">The fundamental challenge</div>
+  <h2 class="sect-title">Getting inventory right from day one</h2>
+
+  <div class="hl teal">
+    <strong>The core tension:</strong> over-ordering ties up scarce capital in stock sitting in a 3PL warehouse. Under-ordering means stockouts, disappointed customers, and missed BNPL revenue — with a 25–35 day sea freight lead time meaning you can't fix it quickly. For Sola, the bias should be <em>slightly toward holding more stock</em> than you think you need in year one.
+  </div>
+
+  <div class="grid3" style="margin-bottom:20px">
+    <div class="card teal">
+      <div class="card-label">Sea freight lead time</div>
+      <div class="card-value">25–35 days</div>
+      <div class="card-sub">China → Felixstowe. The number everything else is built around. You must see a stockout coming a month before it happens.</div>
+    </div>
+    <div class="card sun">
+      <div class="card-label">Opening inventory target</div>
+      <div class="card-value">50 + 20</div>
+      <div class="card-sub">50× Sola 400 Hero kits + 20× Sola 800 Pro kits. Enough to run a proper launch without overcommitting capital.</div>
+    </div>
+    <div class="card red">
+      <div class="card-label">Why under-ordering is worse</div>
+      <div class="card-value">48hrs</div>
+      <div class="card-sub">Klarna pays Sola within 48hrs of each order. You can only collect that revenue if stock exists. A stockout = lost sale, lost customer, lost BNPL income.</div>
+    </div>
+  </div>
+
+  <div class="hl sun">
+    <strong>The asymmetry matters:</strong> A viral TikTok or MoneySavingExpert mention could generate 30 orders in 48 hours. Air freight to top up is available but costly — roughly 8–10× sea freight per unit. Your stockout protection is a good reorder trigger, not just more stock.
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- KEY CONCEPTS -->
+<div class="section">
+  <div class="sect-label">Inventory fundamentals</div>
+  <h2 class="sect-title">The three concepts you need to know</h2>
+
+  <div class="formula">
+    <div class="formula-label">Reorder Point (ROP) Formula</div>
+    <div class="formula-eq">ROP = <span>(Average Daily Sales × Lead Time in Days)</span> + Safety Stock</div>
+  </div>
+
+  <div class="formula" style="margin-top:12px">
+    <div class="formula-label">Example — Sola 400 Hero at 2 units/day</div>
+    <div class="formula-eq">ROP = <span>(2 × 30 days)</span> + 14 days buffer = <span>74 units</span></div>
+  </div>
+
+  <div class="grid3" style="margin-top:20px">
+    <div class="card">
+      <div class="card-title">1. Reorder Point</div>
+      <div class="card-body">The stock level at which you trigger a new purchase order. Hit this number and you order immediately — not when you run out. With 30-day sea freight, you need to act a month early.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">2. Safety Stock</div>
+      <div class="card-body">A buffer held above your expected sales during lead time to absorb variability — a delayed shipment or a sudden demand spike. For Sola year one, target <strong>2–3 weeks of expected sales</strong> as your buffer.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">3. Order Quantity</div>
+      <div class="card-body">How much to order when you reorder. In early stage: how much can I sell before the next shipment arrives, minus safety stock? That figure becomes your order size. It grows as your velocity data improves.</div>
+    </div>
+  </div>
+
+  <div class="hl teal" style="margin-top:20px">
+    <strong>The honest reality for a brand-new business:</strong> All of this requires sales data you don't have yet. Your first 1–2 orders are educated guesses, and that's completely normal. The goal in year one is to <em>learn your demand pattern</em>, not to optimise perfectly. Make small enough orders that a mistake doesn't sink you.
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- FREIGHT COMPARISON -->
+<div class="section">
+  <div class="sect-label">Logistics</div>
+  <h2 class="sect-title">Sea vs air freight — China to UK</h2>
+
+  <div class="freight-compare">
+    <div class="freight-card sea">
+      <div class="freight-title sea">🚢 Sea Freight — Standard</div>
+      <div class="freight-stat">
+        <div class="freight-stat-label">Transit time</div>
+        <div class="freight-stat-value" style="color:var(--teal)">25–35 days</div>
+      </div>
+      <div class="freight-stat">
+        <div class="freight-stat-label">Cost per kg</div>
+        <div class="freight-stat-value" style="color:var(--teal)">£0.80–1.50</div>
+      </div>
+      <div class="freight-stat">
+        <div class="freight-stat-label">50× Sola 400 kits (est.)</div>
+        <div class="freight-stat-value" style="color:var(--teal)">£300–500 total</div>
+      </div>
+      <div class="card-sub" style="margin-top:8px">~£6–10 per unit. The default choice for all planned orders. Build your entire reorder strategy around this timeline.</div>
+    </div>
+    <div class="freight-card air">
+      <div class="freight-title air">✈️ Air Freight — Emergency only</div>
+      <div class="freight-stat">
+        <div class="freight-stat-label">Transit time</div>
+        <div class="freight-stat-value" style="color:#7A5200">3–7 days</div>
+      </div>
+      <div class="freight-stat">
+        <div class="freight-stat-label">Cost per kg</div>
+        <div class="freight-stat-value" style="color:#7A5200">£4–8</div>
+      </div>
+      <div class="freight-stat">
+        <div class="freight-stat-label">50× Sola 400 kits (est.)</div>
+        <div class="freight-stat-value" style="color:#7A5200">£2,500–4,500 total</div>
+      </div>
+      <div class="card-sub" style="margin-top:8px">~£50–90 per unit. 8–10× sea cost. Break-glass only — for emergency top-ups of 10–15 units when a stockout is imminent and unavoidable.</div>
+    </div>
+  </div>
+
+  <div style="background:var(--white);border-radius:14px;overflow:hidden;border:1px solid var(--border)">
+  <table>
+    <tr><th>Factor</th><th>Sea freight</th><th>Air freight</th><th>Verdict</th></tr>
+    <tr>
+      <td class="bold">Speed</td>
+      <td>25–35 days</td>
+      <td>3–7 days</td>
+      <td class="pos">Air wins</td>
+    </tr>
+    <tr class="row-highlight">
+      <td class="bold">Cost (50 units)</td>
+      <td class="mono pos">£300–500</td>
+      <td class="mono neg">£2,500–4,500</td>
+      <td class="pos">Sea wins</td>
+    </tr>
+    <tr>
+      <td class="bold">Cost per unit</td>
+      <td class="mono pos">£6–10</td>
+      <td class="mono neg">£50–90</td>
+      <td class="pos">Sea wins</td>
+    </tr>
+    <tr>
+      <td class="bold">Margin impact</td>
+      <td>Minimal</td>
+      <td>Severe — wipes ~30% margin</td>
+      <td class="pos">Sea wins</td>
+    </tr>
+    <tr>
+      <td class="bold">Best use</td>
+      <td>All planned orders</td>
+      <td>Emergency top-up only</td>
+      <td>—</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="hl sun" style="margin-top:16px">
+    <strong>Sola 400 kit weight note:</strong> The Sola 400 uses two compact 200W panels — significantly lighter than traditional 400W panels. Estimated kit weight: 12–18kg. This makes the air freight emergency option less catastrophic than it would be for heavier hardware, but still firmly a last resort.
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SKU STRATEGY -->
+<div class="section">
+  <div class="sect-label">SKU management</div>
+  <h2 class="sect-title">Managing your three products differently</h2>
+
+  <div class="hl teal">
+    <strong>Your SKU mix matters more than total volume.</strong> Each product has a different velocity, margin, and risk profile. Treat them as three separate inventory decisions, not one blended order.
+  </div>
+
+  <div style="background:var(--white);border-radius:14px;overflow:hidden;border:1px solid var(--border);margin-bottom:20px">
+  <table>
+    <tr><th>Kit</th><th>Expected velocity</th><th>Opening order</th><th>Reorder sensitivity</th><th>Notes</th></tr>
+    <tr class="row-highlight">
+      <td class="bold">Sola 400 Hero ⭐</td>
+      <td>High — hero product</td>
+      <td class="mono bold">50 units</td>
+      <td><span class="badge badge-red">High</span></td>
+      <td>Stockout here is most damaging. Keep safety stock generous. This is 80%+ of your revenue.</td>
+    </tr>
+    <tr>
+      <td class="bold">Sola 800 Pro</td>
+      <td>Medium — high-ticket upsell</td>
+      <td class="mono">20 units</td>
+      <td><span class="badge badge-sun">Medium</span></td>
+      <td>Higher margin but slower moving. Over-ordering here ties up significant capital (£240–280/unit COGS). Start conservative.</td>
+    </tr>
+    <tr>
+      <td class="bold">Sola 200 Starter</td>
+      <td>Low-medium — entry point</td>
+      <td class="mono">TBC</td>
+      <td><span class="badge badge-teal">Lower</span></td>
+      <td>Entry-level product. Useful for gifting and lower-commitment buyers. Don't over-invest until velocity is proven.</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="grid2">
+    <div class="card sun">
+      <div class="card-label">Seasonal risk</div>
+      <div class="card-title">Plug-in solar is a spring/summer product</div>
+      <div class="card-body" style="margin-top:8px">Demand peaks April–August. Order carefully into autumn — you don't want 30 unsold Hero kits sitting in January at £155–175 COGS each. Your July/August launch timing is well-placed; plan your second order with seasonality in mind.</div>
+    </div>
+    <div class="card red">
+      <div class="card-label">Viral moment risk</div>
+      <div class="card-title">One post can break your inventory plan</div>
+      <div class="card-body" style="margin-top:8px">A MoneySavingExpert mention or viral TikTok could generate 30+ orders in 48 hours. Pre-plan your response: a waitlist page, an honest "ships in X weeks" message, and a process for an emergency air freight top-up of 10–15 units if needed.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- DECISION FRAMEWORK -->
+<div class="section">
+  <div class="sect-label">Reorder decision</div>
+  <h2 class="sect-title">Simple framework for every reorder decision</h2>
+
+  <p class="prose">Until you have 3–6 months of real sales data, use this four-question process each time you consider placing a new order. The inventory spreadsheet (to be built in Google Sheets) will automate this — you enter current stock and recent sales, it tells you whether to order and how much.</p>
+
+  <div class="decision-step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h4>What have I sold in the last 30 days, by SKU?</h4>
+      <p>This is your observed daily run rate. Divide by 30 to get average daily sales. Track this from day one — even a simple tally in a spreadsheet. This data is the foundation of every future order decision.</p>
+    </div>
+  </div>
+  <div class="decision-step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h4>How many days until a new shipment would arrive if I ordered today?</h4>
+      <p>Default assumption: 30 days sea freight + 3–5 days UK clearance and 3PL receiving = ~35 days total. Add buffer for Chinese New Year, port delays, and supplier lead time. Round up to 40 days to be safe.</p>
+    </div>
+  </div>
+  <div class="decision-step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h4>Do I have enough stock to cover that period, plus a 2–3 week buffer?</h4>
+      <p>Multiply your daily run rate by 40 (lead time) + 14–21 (buffer) = your reorder threshold. If current stock is above this, wait. If at or below, order now.</p>
+    </div>
+  </div>
+  <div class="decision-step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h4>If ordering — how much?</h4>
+      <p>Order enough to cover your next 60–90 days of expected sales, minus what you'll still have when the new shipment arrives. Factor in any upcoming seasonal peaks or marketing campaigns that might spike demand.</p>
+    </div>
+  </div>
+
+  <div class="hl teal" style="margin-top:8px">
+    <strong>The honest answer on year one:</strong> You will make sub-optimal decisions. The goal isn't perfection — it's making mistakes cheaply. Keep orders small enough that an error doesn't sink you, but large enough that you don't constantly run out. Your 50-unit first order sits squarely in that zone.
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- 3PL & SYSTEMS -->
+<div class="section">
+  <div class="sect-label">Infrastructure</div>
+  <h2 class="sect-title">Systems, 3PL, and what connects to what</h2>
+
+  <div class="grid3" style="margin-bottom:20px">
+    <div class="card">
+      <div class="card-title">Shopify (built-in inventory)</div>
+      <div class="card-body">Sufficient for launch. Tracks stock per SKU, decrements on each sale, blocks overselling. Set low-stock email alerts. Enable "stop selling when out of stock." Free — already included in your Shopify subscription.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">3PL ↔ Shopify integration</div>
+      <div class="card-body">Your most critical integration. Orders auto-push from Shopify to 3PL on placement. 3PL updates Shopify with tracking numbers on dispatch. Stock levels sync both ways. Confirm this integration works <em>before</em> signing with any 3PL.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Inventory Planner (later)</div>
+      <div class="card-body">~£99–199/mo. Shopify-native demand forecasting and reorder point calculation. Worth adding when you're moving 80–100+ units/month. Not needed at launch — Shopify built-in + a spreadsheet covers it.</div>
+    </div>
+  </div>
+
+  <div style="background:var(--white);border-radius:14px;overflow:hidden;border:1px solid var(--border)">
+  <table>
+    <tr><th>3PL shortlist</th><th>Shopify integration</th><th>Electronics handling</th><th>Est. cost per order</th><th>Action</th></tr>
+    <tr>
+      <td class="bold">Fulfilment Crowd</td>
+      <td class="pos">✓ Native app</td>
+      <td>Ask specifically</td>
+      <td class="mono">£12–18</td>
+      <td>fulfilmentcrowd.com</td>
+    </tr>
+    <tr class="row-highlight">
+      <td class="bold">Rapid Pack</td>
+      <td class="pos">✓ Native app</td>
+      <td>Ask specifically</td>
+      <td class="mono">£12–18</td>
+      <td>rapidpack.co.uk</td>
+    </tr>
+    <tr>
+      <td class="bold">3P Logistics</td>
+      <td class="pos">✓ API</td>
+      <td>Ask specifically</td>
+      <td class="mono">£12–18</td>
+      <td>3p-logistics.co.uk</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="hl sun" style="margin-top:16px">
+    <strong>Key question to ask every 3PL:</strong> "What is your storage cost per pallet per week?" Holding excess inventory has a real ongoing cost. Factor this into your over-order calculations — a pallet of unsold 800W kits sitting for 3 months has a storage bill attached.
+  </div>
+
+  <div class="hl red" style="margin-top:0">
+    <strong>Don't forget returns from day one.</strong> Agree a returns handling process with your 3PL before you launch. Solar kit returns are low volume but high complexity — panels need inspection, repackaging, and a decision tree (resell as refurb, return to supplier, dispose). Getting this agreed upfront saves significant pain.
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SCALING STRATEGY -->
+<div class="section">
+  <div class="sect-label">Longer-term strategy</div>
+  <h2 class="sect-title">How inventory strategy evolves as Sola scales</h2>
+
+  <p class="prose" style="margin-bottom:24px">Most DTC hardware brands follow a predictable progression. Companies like EcoFlow, Anker, and BioLite stayed on 3PL or Amazon FBA for years before bringing anything in-house. The ones that warehoused too early consistently cite it as a capital mistake.</p>
+
+  <div class="phase-row">
+    <div class="phase-item">
+      <div class="phase-line"><div class="phase-dot fill"></div><div class="phase-vline"></div></div>
+      <div class="phase-content">
+        <div class="phase-period">Launch → ~£500k revenue · Stage 1</div>
+        <div class="phase-title">3PL — no debate</div>
+        <div class="phase-desc">Outsource everything. Pay per pick/pack/store. No fixed costs, no lease, no staff. Negotiate good rates upfront — volume commitments in exchange for lower per-unit fees. The 3PL relationship is a genuine asset if you pick the right partner. Use Shopify built-in inventory + a Google Sheets reorder tracker.</div>
+      </div>
+    </div>
+    <div class="phase-item">
+      <div class="phase-line"><div class="phase-dot"></div><div class="phase-vline"></div></div>
+      <div class="phase-content">
+        <div class="phase-period">~£500k–1.5m revenue · Stage 2</div>
+        <div class="phase-title">Larger 3PL + Amazon FBA as parallel channel</div>
+        <div class="phase-desc">At this stage you have a real decision. Options: (a) negotiate a semi-dedicated 3PL bay giving you faster turnaround and more control without fixed cost; (b) add Amazon FBA as a second fulfilment channel — opens a huge new customer base, their network handles bulky goods well, though the 15% referral fee + FBA costs need to model out; (c) add a small UK lock-up (£300–600/mo) as a secondary reserve for returns, influencer seeding, and trade show stock — not primary fulfilment.</div>
+      </div>
+    </div>
+    <div class="phase-item">
+      <div class="phase-line"><div class="phase-dot sun"></div></div>
+      <div class="phase-content">
+        <div class="phase-period">£1.5m+ revenue, 300+ units/month · Stage 3</div>
+        <div class="phase-title">Dedicated 3PL contract or own warehouse — revisit properly</div>
+        <div class="phase-desc">Only now does the own-warehouse conversation become real. Even then, many brands choose a dedicated 3PL contract (where the 3PL operates a semi-exclusive facility for you) rather than full ownership — you get control without capital and management overhead. A leased industrial unit in Greater London costs £15,000–40,000/year before rates, insurance, utilities, and staff. You'd need 80–100+ units/month just to break even on the warehouse versus continuing with 3PL.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hl teal" style="margin-top:8px">
+    <strong>Recommended path for Sola:</strong> 3PL for the first 18–24 months → Amazon FBA as an additional channel around month 12 if sales justify it → revisit own warehousing at £1m+ revenue. The founders who warehouse too early almost always regret it. Stay asset-light; spend the capital on growth instead.
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SUMMARY TABLE -->
+<div class="section">
+  <div class="sect-label">Summary</div>
+  <h2 class="sect-title">Inventory management at a glance</h2>
+
+  <div style="background:var(--white);border-radius:14px;overflow:hidden;border:1px solid var(--border)">
+  <table>
+    <tr><th>Topic</th><th>Decision / principle</th><th>When to revisit</th></tr>
+    <tr>
+      <td class="bold">Freight method</td>
+      <td>Sea freight by default. Air freight break-glass only (emergency top-ups of 10–15 units).</td>
+      <td>Never changes — sea is always default</td>
+    </tr>
+    <tr class="row-highlight">
+      <td class="bold">Opening stock</td>
+      <td>50× Hero + 20× Pro. Bias slightly toward more stock given 30-day lead time.</td>
+      <td>After first 90 days of sales data</td>
+    </tr>
+    <tr>
+      <td class="bold">Reorder trigger</td>
+      <td>ROP = (daily sales × 35 days) + 14–21 day buffer. Check monthly.</td>
+      <td>Recalibrate each quarter as velocity data improves</td>
+    </tr>
+    <tr class="row-highlight">
+      <td class="bold">Inventory system</td>
+      <td>Shopify built-in + Google Sheets tracker at launch.</td>
+      <td>Add Inventory Planner at ~80–100 units/month</td>
+    </tr>
+    <tr>
+      <td class="bold">Fulfilment</td>
+      <td>3PL with native Shopify integration. Confirm before signing.</td>
+      <td>Revisit at £500k revenue</td>
+    </tr>
+    <tr class="row-highlight">
+      <td class="bold">Own warehouse</td>
+      <td>Do not consider until £1m+ revenue and 300+ units/month consistently.</td>
+      <td>Stage 3 — years away at launch scale</td>
+    </tr>
+    <tr>
+      <td class="bold">Returns</td>
+      <td>Agree process with 3PL before first sale. Inspection → resell/return/dispose decision tree.</td>
+      <td>Review if return rate exceeds 3%</td>
+    </tr>
+  </table>
+  </div>
+</div>
+
+</div><!-- /body -->
+</body>
+</html>
